@@ -49,7 +49,7 @@ $list->map(function($item) {
 // And many more
 ```
 
-> Full documentation available [here](http://zuffik.eu/#docs/zuffik/srvant).
+> Full documentation available [here](https://github.com/zuffik/srvant/tree/master/docs/).
 
 #### String
 
@@ -66,7 +66,7 @@ $str = string('Hallo world')
 echo $str; // HELLO-WORLD
 ```
 
-> Full documentation available [here](http://zuffik.eu/#docs/zuffik/srvant).
+> Full documentation available [here](https://github.com/zuffik/srvant/tree/master/docs/).
 
 #### Formats
 
@@ -85,7 +85,7 @@ echo $url->getDomain(); // example
 echo $url->getRequestedUrl(); // index.php
 ```
 
-> Full documentation available [here](http://zuffik.eu/#docs/zuffik/srvant).
+> Full documentation available [here](https://github.com/zuffik/srvant/tree/master/docs/).
 
 There are planned many features in future.
 
