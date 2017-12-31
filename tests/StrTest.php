@@ -6,10 +6,10 @@
  * Time: 20:02
  */
 
-namespace Zuffik\Test\Structures;
+namespace Zuffik\Test\Srvant;
 
 use PHPUnit\Framework\TestCase;
-use Zuffik\Structures\Types\StringActions\Partitioning\StringPartition;
+use Zuffik\Srvant\Types\StringActions\Partitioning\StringPartition;
 
 class StrTest extends TestCase
 {

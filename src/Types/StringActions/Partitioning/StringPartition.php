@@ -6,10 +6,10 @@
  * Time: 17:22
  */
 
-namespace Zuffik\Structures\Types\StringActions\Partitioning;
+namespace Zuffik\Srvant\Types\StringActions\Partitioning;
 
 
-use Zuffik\Structures\Types\Enum;
+use Zuffik\Srvant\Types\Enum;
 
 class StringPartition extends Enum
 {

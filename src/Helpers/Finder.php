@@ -6,7 +6,7 @@
  * Time: 12:49
  */
 
-namespace Zuffik\Structures\Helpers;
+namespace Zuffik\Srvant\Helpers;
 
 
 class Finder

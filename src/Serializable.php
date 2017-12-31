@@ -6,7 +6,7 @@
  * Time: 17:52
  */
 
-namespace Zuffik\Structures;
+namespace Zuffik\Srvant;
 
 
 trait Serializable

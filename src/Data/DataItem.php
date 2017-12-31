@@ -6,10 +6,10 @@
  * Time: 22:16
  */
 
-namespace Zuffik\Structures\Data;
+namespace Zuffik\Srvant\Data;
 
 
-use Zuffik\Structures\Serializable;
+use Zuffik\Srvant\Serializable;
 
 class DataItem
 {

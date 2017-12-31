@@ -6,7 +6,7 @@
  * Time: 9:03
  */
 
-namespace Zuffik\Structures\Types;
+namespace Zuffik\Srvant\Types;
 
 class Boolean
 {

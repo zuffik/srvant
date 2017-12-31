@@ -6,11 +6,11 @@
  * Time: 11:42
  */
 
-namespace Zuffik\Structures\Formats;
+namespace Zuffik\Srvant\Formats;
 
 
-use Zuffik\Structures\Data\ArrayList;
-use Zuffik\Structures\Data\HashMap;
+use Zuffik\Srvant\Data\ArrayList;
+use Zuffik\Srvant\Data\HashMap;
 
 class ExceptionFormatter
 {

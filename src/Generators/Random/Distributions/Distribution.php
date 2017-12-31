@@ -6,7 +6,7 @@
  * Time: 10:20
  */
 
-namespace Zuffik\Structures\Generators\Random\Distributions;
+namespace Zuffik\Srvant\Generators\Random\Distributions;
 
 
 abstract class Distribution

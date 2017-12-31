@@ -6,11 +6,11 @@
  * Time: 0:15
  */
 
-namespace Zuffik\Structures\Formats;
+namespace Zuffik\Srvant\Formats;
 
 
-use Zuffik\Structures\Convertors\ArraySerializableConvertor;
-use Zuffik\Structures\Data\ArrayList;
+use Zuffik\Srvant\Convertors\ArraySerializableConvertor;
+use Zuffik\Srvant\Data\ArrayList;
 
 class CSV implements \Iterator
 {

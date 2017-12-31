@@ -6,10 +6,10 @@
  * Time: 13:49
  */
 
-namespace Zuffik\Structures\Formats;
+namespace Zuffik\Srvant\Formats;
 
 
-use Zuffik\Structures\Data\HashMap;
+use Zuffik\Srvant\Data\HashMap;
 
 class URL
 {

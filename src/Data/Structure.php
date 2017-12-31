@@ -6,13 +6,13 @@
  * Time: 21:59
  */
 
-namespace Zuffik\Structures\Data;
+namespace Zuffik\Srvant\Data;
 
 
 use ArrayAccess;
 use Countable;
 use Iterator;
-use Zuffik\Structures\Helpers\Finder;
+use Zuffik\Srvant\Helpers\Finder;
 
 abstract class Structure implements Countable, ArrayAccess, BasicStructure, Iterator, \JsonSerializable
 {

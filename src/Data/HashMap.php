@@ -6,14 +6,14 @@
  * Time: 15:33
  */
 
-namespace Zuffik\Structures\Data;
+namespace Zuffik\Srvant\Data;
 
 
 use Exception;
 use Generator;
-use Zuffik\Structures\Helpers\Finder;
-use Zuffik\Structures\Serializable;
-use Zuffik\Structures\SerializableChecker;
+use Zuffik\Srvant\Helpers\Finder;
+use Zuffik\Srvant\Serializable;
+use Zuffik\Srvant\SerializableChecker;
 
 class HashMap extends Structure
 {

@@ -6,7 +6,7 @@
  * Time: 13:26
  */
 
-namespace Zuffik\Structures\Generators\Random\Distributions;
+namespace Zuffik\Srvant\Generators\Random\Distributions;
 
 
 class TriangularDistribution extends Distribution

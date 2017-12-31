@@ -6,7 +6,7 @@
  * Time: 10:30
  */
 
-namespace Zuffik\Structures\Generators\Random\Distributions;
+namespace Zuffik\Srvant\Generators\Random\Distributions;
 
 
 use SebastianBergmann\CodeCoverage\Report\PHP;

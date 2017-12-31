@@ -12,13 +12,12 @@
     "autoload": {
         "files": ["helpers/functions.php"],
         "psr-4": {
-            "Zuffik\\Structures\\": "src/",
-            "Zuffik\\Test\\Structures\\": "tests/"
+            "Zuffik\\Srvant\\": "src/",
+            "Zuffik\\Test\\Srvant\\": "tests/"
         }
     },
-    "require": {
-    },
     "require-dev": {
+        "alphayax/phpdoc_md": "^1.2",
         "phpunit/phpunit": "^6"
     }
 }

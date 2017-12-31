@@ -6,7 +6,7 @@
  * Time: 14:45
  */
 
-namespace Zuffik\Structures\Convertors;
+namespace Zuffik\Srvant\Convertors;
 
 
 class FromScalar

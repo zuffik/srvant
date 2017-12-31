@@ -6,11 +6,11 @@
  * Time: 14:37
  */
 
-namespace Zuffik\Structures\Types;
+namespace Zuffik\Srvant\Types;
 
 
 use Exception;
-use Zuffik\Structures\Serializable;
+use Zuffik\Srvant\Serializable;
 use ReflectionClass;
 
 abstract class Enum

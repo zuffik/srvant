@@ -6,11 +6,11 @@
  * Time: 13:28
  */
 
-namespace Zuffik\Structures\Formats;
+namespace Zuffik\Srvant\Formats;
 
 
 use InvalidArgumentException;
-use Zuffik\Structures\Types\Str;
+use Zuffik\Srvant\Types\Str;
 
 class Regex
 {

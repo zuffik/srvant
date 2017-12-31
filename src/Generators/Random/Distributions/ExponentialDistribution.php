@@ -6,7 +6,7 @@
  * Time: 10:23
  */
 
-namespace Zuffik\Structures\Generators\Random\Distributions;
+namespace Zuffik\Srvant\Generators\Random\Distributions;
 
 
 class ExponentialDistribution extends Distribution

@@ -6,19 +6,19 @@
  * Time: 14:28
  */
 
-namespace Zuffik\Test\Structures;
+namespace Zuffik\Test\Srvant;
 
 use PHPUnit\Framework\TestCase;
-use Zuffik\Structures\Data\ArrayList;
-use Zuffik\Structures\Data\HashMap;
-use Zuffik\Structures\Data\LinkedList;
-use Zuffik\Structures\Formats\JSON;
-use Zuffik\Structures\Formats\Random;
-use Zuffik\Structures\Formats\Regex;
-use Zuffik\Structures\Types\Double;
-use Zuffik\Structures\Types\Integer;
-use Zuffik\Structures\Types\Number;
-use Zuffik\Structures\Types\Str;
+use Zuffik\Srvant\Data\ArrayList;
+use Zuffik\Srvant\Data\HashMap;
+use Zuffik\Srvant\Data\LinkedList;
+use Zuffik\Srvant\Formats\JSON;
+use Zuffik\Srvant\Formats\Random;
+use Zuffik\Srvant\Formats\Regex;
+use Zuffik\Srvant\Types\Double;
+use Zuffik\Srvant\Types\Integer;
+use Zuffik\Srvant\Types\Number;
+use Zuffik\Srvant\Types\Str;
 
 class FunctionsTest extends TestCase
 {

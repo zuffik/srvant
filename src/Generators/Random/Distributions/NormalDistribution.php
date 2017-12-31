@@ -6,7 +6,7 @@
  * Time: 20:56
  */
 
-namespace Zuffik\Structures\Generators\Random\Distributions;
+namespace Zuffik\Srvant\Generators\Random\Distributions;
 
 
 class NormalDistribution extends Distribution

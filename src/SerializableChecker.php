@@ -6,7 +6,7 @@
  * Time: 17:25
  */
 
-namespace Zuffik\Structures;
+namespace Zuffik\Srvant;
 
 
 trait SerializableChecker
@@ -18,6 +18,6 @@ trait SerializableChecker
 
     public static function serializable($var)
     {
-        return is_object($var) && in_array('Zuffik\Structures\Serializable', class_uses(get_class($var)));
+        return is_object($var) && in_array('Zuffik\Srvant\Serializable', class_uses(get_class($var)));
     }
 }

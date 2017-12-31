@@ -6,7 +6,7 @@
  * Time: 12:21
  */
 
-namespace Zuffik\Structures\Helpers;
+namespace Zuffik\Srvant\Helpers;
 
 
 use Exception;

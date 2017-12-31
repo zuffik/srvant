@@ -6,12 +6,12 @@
  * Time: 18:29
  */
 
-namespace Zuffik\Structures\Types;
+namespace Zuffik\Srvant\Types;
 
 
-use Zuffik\Structures\Formats\Regex;
-use Zuffik\Structures\Types\StringActions\Partitioning\PartitionAction;
-use Zuffik\Structures\Types\StringActions\Partitioning\StringPartition;
+use Zuffik\Srvant\Formats\Regex;
+use Zuffik\Srvant\Types\StringActions\Partitioning\PartitionAction;
+use Zuffik\Srvant\Types\StringActions\Partitioning\StringPartition;
 
 class Str implements \Countable
 {
@@ -369,7 +369,7 @@ class Str implements \Countable
 
     /**
      * @param string $delimiter
-     * @return \Zuffik\Structures\Data\ArrayList
+     * @return \Zuffik\Srvant\Data\ArrayList
      */
     public function split($delimiter = ' ')
     {

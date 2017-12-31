@@ -6,11 +6,11 @@
  * Time: 20:23
  */
 
-namespace Zuffik\Test\Structures;
+namespace Zuffik\Test\Srvant;
 
-use Zuffik\Structures\Formats\Random;
+use Zuffik\Srvant\Formats\Random;
 use PHPUnit\Framework\TestCase;
-use Zuffik\Structures\Types\Str;
+use Zuffik\Srvant\Types\Str;
 
 class RandomTest extends TestCase
 {

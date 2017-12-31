@@ -6,10 +6,10 @@
  * Time: 10:57
  */
 
-namespace Zuffik\Structures\Data;
+namespace Zuffik\Srvant\Data;
 
 
-use Zuffik\Structures\Serializable;
+use Zuffik\Srvant\Serializable;
 
 class KeyValue
 {

@@ -6,7 +6,7 @@
  * Time: 6:49
  */
 
-namespace Zuffik\Structures\Types;
+namespace Zuffik\Srvant\Types;
 
 
 class Double extends Number

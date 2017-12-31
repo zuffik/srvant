@@ -6,7 +6,7 @@
  * Time: 12:31
  */
 
-namespace Zuffik\Structures\Generators\Random\Distributions;
+namespace Zuffik\Srvant\Generators\Random\Distributions;
 
 
 class CombinedDistribution extends Distribution

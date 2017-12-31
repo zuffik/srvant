@@ -6,12 +6,12 @@
  * Time: 22:16
  */
 
-namespace Zuffik\Structures\Data;
+namespace Zuffik\Srvant\Data;
 
 
 use Exception;
-use Zuffik\Structures\Helpers\Finder;
-use Zuffik\Structures\Helpers\RecursiveGetter;
+use Zuffik\Srvant\Helpers\Finder;
+use Zuffik\Srvant\Helpers\RecursiveGetter;
 
 class LinkedList extends Structure
 {

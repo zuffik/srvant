@@ -6,13 +6,13 @@
  * Time: 23:05
  */
 
-namespace Zuffik\Structures\Formats;
+namespace Zuffik\Srvant\Formats;
 
 
 use ArrayAccess;
-use Zuffik\Structures\Data\Structure;
-use Zuffik\Structures\Convertors\ArraySerializableConvertor;
-use Zuffik\Structures\Serializable;
+use Zuffik\Srvant\Data\Structure;
+use Zuffik\Srvant\Convertors\ArraySerializableConvertor;
+use Zuffik\Srvant\Serializable;
 
 class JSON implements ArrayAccess, \Iterator
 {

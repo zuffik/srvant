@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$srcDir = __DIR__ . '/../src';
+$namespace = 'Zuffik\Srvant';
+
+$gen = new \alphayax\mdGen\MdGen($srcDir, $namespace);
+$gen->generate('docs');

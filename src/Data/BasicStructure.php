@@ -6,7 +6,7 @@
  * Time: 23:05
  */
 
-namespace Zuffik\Structures\Data;
+namespace Zuffik\Srvant\Data;
 
 
 interface BasicStructure

@@ -6,7 +6,7 @@
  * Time: 12:07
  */
 
-namespace Zuffik\Test\Structures\Objects;
+namespace Zuffik\Test\Srvant\Objects;
 
 
 class ReturnsObject

@@ -6,11 +6,11 @@
  * Time: 16:52
  */
 
-namespace Zuffik\Structures\Types\StringActions\Partitioning;
+namespace Zuffik\Srvant\Types\StringActions\Partitioning;
 
 
-use Zuffik\Structures\Types\Str;
-use Zuffik\Structures\Types\StringActions\Action;
+use Zuffik\Srvant\Types\Str;
+use Zuffik\Srvant\Types\StringActions\Action;
 
 interface PartitionAction extends Action
 {

@@ -6,16 +6,16 @@
  * Time: 20:15
  */
 
-namespace Zuffik\Structures\Formats;
+namespace Zuffik\Srvant\Formats;
 
-use Zuffik\Structures\Types\Double;
-use Zuffik\Structures\Types\Integer;
-use Zuffik\Structures\Types\Str;
+use Zuffik\Srvant\Types\Double;
+use Zuffik\Srvant\Types\Integer;
+use Zuffik\Srvant\Types\Str;
 
 /**
  * Class Random
- * @package Zuffik\Structures\Formats
- * @deprecated use Zuffik\Structures\Generators\Random\ distributions or Random class
+ * @package Zuffik\Srvant\Formats
+ * @deprecated use Zuffik\Srvant\Generators\Random\ distributions or Random class
  */
 class Random
 {
@@ -43,7 +43,7 @@ class Random
     /**
      * @param int $length
      * @param string|Str $characters
-     * @return \Zuffik\Structures\Types\Str
+     * @return \Zuffik\Srvant\Types\Str
      */
     public function string($length = 10, $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
     {

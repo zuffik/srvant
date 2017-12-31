@@ -6,13 +6,13 @@
  * Time: 14:53
  */
 
-namespace Zuffik\Structures\Convertors;
+namespace Zuffik\Srvant\Convertors;
 
 
-use Zuffik\Structures\Data\ArrayList;
-use Zuffik\Structures\Data\BasicStructure;
-use Zuffik\Structures\Data\HashMap;
-use Zuffik\Structures\SerializableChecker;
+use Zuffik\Srvant\Data\ArrayList;
+use Zuffik\Srvant\Data\BasicStructure;
+use Zuffik\Srvant\Data\HashMap;
+use Zuffik\Srvant\SerializableChecker;
 
 class ArraySerializableConvertor
 {

@@ -6,9 +6,9 @@
  * Time: 0:45
  */
 
-namespace Zuffik\Test\Structures;
+namespace Zuffik\Test\Srvant;
 
-use Zuffik\Structures\Formats\CSV;
+use Zuffik\Srvant\Formats\CSV;
 use PHPUnit\Framework\TestCase;
 
 class CSVTest extends TestCase

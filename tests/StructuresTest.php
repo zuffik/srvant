@@ -6,13 +6,13 @@
  * Time: 12:11
  */
 
-namespace Zuffik\Test\Structures;
+namespace Zuffik\Test\Srvant;
 
 use PHPUnit\Framework\TestCase;
 use Exception;
-use Zuffik\Structures\Data\ArrayList;
-use Zuffik\Structures\Data\HashMap;
-use Zuffik\Test\Structures\Objects\ReturnsObject;
+use Zuffik\Srvant\Data\ArrayList;
+use Zuffik\Srvant\Data\HashMap;
+use Zuffik\Test\Srvant\Objects\ReturnsObject;
 
 class StructuresTest extends TestCase
 {

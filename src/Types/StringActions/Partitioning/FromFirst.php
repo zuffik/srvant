@@ -6,10 +6,10 @@
  * Time: 16:56
  */
 
-namespace Zuffik\Structures\Types\StringActions\Partitioning;
+namespace Zuffik\Srvant\Types\StringActions\Partitioning;
 
 
-use Zuffik\Structures\Types\Str;
+use Zuffik\Srvant\Types\Str;
 
 class FromFirst implements PartitionAction
 {

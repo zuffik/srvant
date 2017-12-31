@@ -6,15 +6,15 @@
  * Time: 10:45
  */
 
-namespace Zuffik\Test\Structures;
+namespace Zuffik\Test\Srvant;
 
-use Zuffik\Structures\Generators\Random\Distributions\CombinedDistribution;
-use Zuffik\Structures\Generators\Random\Distributions\Distribution;
+use Zuffik\Srvant\Generators\Random\Distributions\CombinedDistribution;
+use Zuffik\Srvant\Generators\Random\Distributions\Distribution;
 use PHPUnit\Framework\TestCase;
-use Zuffik\Structures\Generators\Random\Distributions\ExponentialDistribution;
-use Zuffik\Structures\Generators\Random\Distributions\NormalDistribution;
-use Zuffik\Structures\Generators\Random\Distributions\TriangularDistribution;
-use Zuffik\Structures\Generators\Random\Distributions\UniformDistribution;
+use Zuffik\Srvant\Generators\Random\Distributions\ExponentialDistribution;
+use Zuffik\Srvant\Generators\Random\Distributions\NormalDistribution;
+use Zuffik\Srvant\Generators\Random\Distributions\TriangularDistribution;
+use Zuffik\Srvant\Generators\Random\Distributions\UniformDistribution;
 
 class DistributionTest extends TestCase
 {

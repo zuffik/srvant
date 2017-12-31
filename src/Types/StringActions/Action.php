@@ -6,10 +6,10 @@
  * Time: 16:49
  */
 
-namespace Zuffik\Structures\Types\StringActions;
+namespace Zuffik\Srvant\Types\StringActions;
 
 
-use Zuffik\Structures\Types\Str;
+use Zuffik\Srvant\Types\Str;
 
 interface Action
 {

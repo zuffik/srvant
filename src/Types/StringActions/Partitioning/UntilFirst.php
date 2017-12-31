@@ -6,10 +6,10 @@
  * Time: 16:51
  */
 
-namespace Zuffik\Structures\Types\StringActions\Partitioning;
+namespace Zuffik\Srvant\Types\StringActions\Partitioning;
 
 
-use Zuffik\Structures\Types\Str;
+use Zuffik\Srvant\Types\Str;
 
 class UntilFirst implements PartitionAction
 {

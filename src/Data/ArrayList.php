@@ -6,16 +6,16 @@
  * Time: 15:33
  */
 
-namespace Zuffik\Structures\Data;
+namespace Zuffik\Srvant\Data;
 
 
 use Exception;
 use Generator;
 use Iterator;
-use Zuffik\Structures\Helpers\Finder;
-use Zuffik\Structures\Helpers\RecursiveGetter;
-use Zuffik\Structures\Serializable;
-use Zuffik\Structures\SerializableChecker;
+use Zuffik\Srvant\Helpers\Finder;
+use Zuffik\Srvant\Helpers\RecursiveGetter;
+use Zuffik\Srvant\Serializable;
+use Zuffik\Srvant\SerializableChecker;
 
 class ArrayList extends Structure implements Iterator
 {
