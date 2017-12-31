@@ -1,0 +1,24 @@
+{
+    "name": "zuffik/srvant",
+    "description": "Data structures and object wrappers for primitive data types",
+    "type": "composer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kristián Žuffa",
+            "email": "zuffixx@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": ["helpers/functions.php"],
+        "psr-4": {
+            "Zuffik\\Structures\\": "src/",
+            "Zuffik\\Test\\Structures\\": "tests/"
+        }
+    },
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6"
+    }
+}
