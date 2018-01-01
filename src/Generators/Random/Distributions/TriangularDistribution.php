@@ -8,7 +8,10 @@
 
 namespace Zuffik\Srvant\Generators\Random\Distributions;
 
-
+/**
+ * TRI(minimum, maximum, mode)
+ * @package Zuffik\Srvant\Generators\Random\Distributions
+ */
 class TriangularDistribution extends Distribution
 {
     /**
@@ -43,7 +46,7 @@ class TriangularDistribution extends Distribution
     }
 
     /**
-     * @return float
+     * @inheritdoc
      */
     public function nextFloat()
     {

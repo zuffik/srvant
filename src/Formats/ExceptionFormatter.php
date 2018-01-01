@@ -9,11 +9,16 @@
 namespace Zuffik\Srvant\Formats;
 
 
-use Zuffik\Srvant\Data\ArrayList;
-use Zuffik\Srvant\Data\HashMap;
+use Zuffik\Srvant\Structures\Lists\ArrayList;
+use Zuffik\Srvant\Structures\Maps\HashMap;
 
 class ExceptionFormatter
 {
+    /**
+     * Formats a exception to readable format.
+     * @param \Exception $exception
+     * @return $this|\Zuffik\Srvant\Structures\OrderedStructure
+     */
     public static function format(\Exception $exception)
     {
         return (new ArrayList($exception->getTrace()))->map(function($traceItem) {

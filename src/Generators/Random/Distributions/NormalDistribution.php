@@ -8,7 +8,10 @@
 
 namespace Zuffik\Srvant\Generators\Random\Distributions;
 
-
+/**
+ * N(mean, standard deviation)
+ * @package Zuffik\Srvant\Generators\Random\Distributions
+ */
 class NormalDistribution extends Distribution
 {
     /**

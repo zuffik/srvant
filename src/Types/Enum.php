@@ -12,10 +12,26 @@ namespace Zuffik\Srvant\Types;
 use Exception;
 use Zuffik\Srvant\Serializable;
 use ReflectionClass;
+use Zuffik\Srvant\Structures\IArray;
+use Zuffik\Srvant\Structures\Maps\HashMap;
 
-abstract class Enum
+/**
+ * Enumerator
+ * Usage:
+ * ```php
+ * class Example extends Enum {
+ *  const C_1 = 1;
+ *  const C_2 = 2;
+ * };
+ * // good:
+ * $enum = new Example(Example::C_1);
+ * // bad (exception):
+ * $enum = new Example('a');
+ * ```
+ * @package Zuffik\Srvant\Types
+ */
+abstract class Enum implements IArray
 {
-    use Serializable;
     /** @var mixed */
     private $value;
     /** @var array */
@@ -28,30 +44,36 @@ abstract class Enum
      */
     public function __construct($value)
     {
-        $this->constants = (new ReflectionClass($this))->getConstants();
+        $this->constants = new HashMap((new ReflectionClass($this))->getConstants());
         $this->setValue($value);
     }
 
+    /**
+     * Return all values
+     * @return HashMap
+     */
     public static function getValues()
     {
-        return (new ReflectionClass(self::class))->getConstants();
+        return new HashMap((new ReflectionClass(self::class))->getConstants());
     }
 
     /**
+     * Setter for value
      * @param mixed $value
      * @return Enum
      * @throws Exception
      */
     public function setValue($value)
     {
-        if(!in_array($value, $this->constants)) {
-            throw new Exception('Could not read ' . $value . ' constant of ' . get_class($this));
+        if(!in_array($value, $this->constants->toArray())) {
+            throw new Exception('Could not read ' . $value . ' constant of enum ' . get_class($this));
         }
         $this->value = $value;
         return $this;
     }
 
     /**
+     * Returns value of enumerator
      * @return mixed
      */
     public function getValue()
@@ -60,13 +82,20 @@ abstract class Enum
     }
 
     /**
-     * @return array
+     * Returns possible values
+     * @return HashMap
      */
     public function toArray()
     {
         return $this->constants;
     }
 
+    /**
+     * If $value can be passed in enumerator returns it. Otherwise it throws an exception.
+     * @param $value
+     * @return mixed
+     * @throws Exception
+     */
     public static function verify($value)
     {
         return (new static($value))->getValue();

@@ -8,7 +8,10 @@
 
 namespace Zuffik\Srvant\Types;
 
-
+/**
+ * Any number wrapper
+ * @package Zuffik\Srvant\Types
+ */
 abstract class Number
 {
     /**

@@ -13,7 +13,7 @@ use Zuffik\Srvant\Types\Integer;
 use Zuffik\Srvant\Types\Str;
 
 /**
- * Class Random
+ * Class Random. Generates numbers using native PHP functions
  * @package Zuffik\Srvant\Formats
  */
 class Random

@@ -9,12 +9,12 @@
 namespace Zuffik\Test\Srvant;
 
 use PHPUnit\Framework\TestCase;
-use Zuffik\Srvant\Data\ArrayList;
-use Zuffik\Srvant\Data\HashMap;
-use Zuffik\Srvant\Data\LinkedList;
 use Zuffik\Srvant\Formats\JSON;
-use Zuffik\Srvant\Formats\Random;
 use Zuffik\Srvant\Formats\Regex;
+use Zuffik\Srvant\Generators\Random\Random;
+use Zuffik\Srvant\Structures\Lists\ArrayList;
+use Zuffik\Srvant\Structures\Lists\LinkedList;
+use Zuffik\Srvant\Structures\Maps\HashMap;
 use Zuffik\Srvant\Types\Double;
 use Zuffik\Srvant\Types\Integer;
 use Zuffik\Srvant\Types\Number;

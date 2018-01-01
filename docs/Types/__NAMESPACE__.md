@@ -65,6 +65,7 @@
 
 | Method | Description |
 |---|---|
+| `__debugInfo` |  |
 | `replace` |  |
 | `__toString` |  |
 | `toUppercase` |  |
@@ -77,30 +78,30 @@
 | `substring` |  |
 | `contains` |  |
 | `trim` |  |
-| `isEmpty` |  |
-| `slug` |  |
+| `isEmpty` | Returns true if string is '' |
+| `slug` | Makes slug from containing string |
 | `slugify` |  |
 | `pad` |  |
-| `upperCamelCase` |  |
-| `lowerCamelCase` |  |
+| `upperCamelCase` | Makes upper camel case from containing string |
+| `lowerCamelCase` | Makes lower camel case from containing string |
 | `camelCase` |  |
 | `toCamelCase` |  |
 | `toLowerCamelCase` |  |
 | `toUpperCamelCase` |  |
-| `snakeCase` |  |
+| `snakeCase` | Makes camel case |
 | `toSnakeCase` |  |
 | `format` | Format string |
 | `formatNew` | Returns NEW formatted string string |
-| `setValue` |  |
-| `count` | Count elements of an object |
+| `setValue` | Setter for value |
+| `count` |  |
 | `length` |  |
 | `find` |  |
 | `split` |  |
-| `part` |  |
+| `part` | String partition |
 | `substrCount` |  |
-| `removeAccents` |  |
-| `randomSubstring` |  |
-| `copy` |  |
+| `removeAccents` | Removes accents |
+| `randomSubstring` | Random substring from given string |
+| `copy` | Returns new instance with same content |
 | `bind` | Binds string into placeholder (similar as string format but with named placeholders) |
 
 <a name="Boolean"></a>
@@ -125,12 +126,11 @@
 
 | Method | Description |
 |---|---|
-| `getValues` |  |
-| `setValue` |  |
-| `getValue` |  |
-| `toArray` |  |
-| `verify` |  |
-| `__debugInfo` |  |
+| `getValues` | Return all values |
+| `setValue` | Setter for value |
+| `getValue` | Returns value of enumerator |
+| `toArray` | Returns possible values |
+| `verify` | If $value can be passed in enumerator returns it. Otherwise it throws an exception. |
 
 <a name="Integer"></a>
 ## Integer

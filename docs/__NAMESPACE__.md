@@ -22,27 +22,31 @@
     - [Boolean](Types/__NAMESPACE__.md#Boolean)
     - [Enum](Types/__NAMESPACE__.md#Enum)
     - [Integer](Types/__NAMESPACE__.md#Integer)
-- [Data](./Data/__NAMESPACE__.md)
-    - [Structure](Data/__NAMESPACE__.md#Structure)
-    - [LinkedList](Data/__NAMESPACE__.md#LinkedList)
-    - [ArrayList](Data/__NAMESPACE__.md#ArrayList)
-    - [HashMap](Data/__NAMESPACE__.md#HashMap)
-    - [DataItem](Data/__NAMESPACE__.md#DataItem)
-    - [KeyValue](Data/__NAMESPACE__.md#KeyValue)
-    - [BasicStructure](Data/__NAMESPACE__.md#BasicStructure)
+- [Structures](./Structures/__NAMESPACE__.md)
+    - [Maps](./Structures/Maps/__NAMESPACE__.md)
+        - [HashMap](Structures/Maps/__NAMESPACE__.md#HashMap)
+        - [KeyValue](Structures/Maps/__NAMESPACE__.md#KeyValue)
+    - [Lists](./Structures/Lists/__NAMESPACE__.md)
+        - [LinkedList](Structures/Lists/__NAMESPACE__.md#LinkedList)
+        - [ArrayList](Structures/Lists/__NAMESPACE__.md#ArrayList)
+        - [DataItem](Structures/Lists/__NAMESPACE__.md#DataItem)
+    - [AbstractStructure](Structures/__NAMESPACE__.md#AbstractStructure)
+    - [AssociativeStructure](Structures/__NAMESPACE__.md#AssociativeStructure)
+    - [OrderedStructure](Structures/__NAMESPACE__.md#OrderedStructure)
+    - [IArray](Structures/__NAMESPACE__.md#IArray)
+    - [Structure](Structures/__NAMESPACE__.md#Structure)
 - [Formats](./Formats/__NAMESPACE__.md)
     - [ExceptionFormatter](Formats/__NAMESPACE__.md#ExceptionFormatter)
     - [Regex](Formats/__NAMESPACE__.md#Regex)
     - [URL](Formats/__NAMESPACE__.md#URL)
     - [CSV](Formats/__NAMESPACE__.md#CSV)
-    - [Random](Formats/__NAMESPACE__.md#Random)
     - [JSON](Formats/__NAMESPACE__.md#JSON)
 - [Helpers](./Helpers/__NAMESPACE__.md)
     - [Finder](Helpers/__NAMESPACE__.md#Finder)
     - [RecursiveGetter](Helpers/__NAMESPACE__.md#RecursiveGetter)
 - [Convertors](./Convertors/__NAMESPACE__.md)
     - [FromScalar](Convertors/__NAMESPACE__.md#FromScalar)
-    - [ArraySerializableConvertor](Convertors/__NAMESPACE__.md#ArraySerializableConvertor)
+    - [ArrayStructureConverter](Convertors/__NAMESPACE__.md#ArrayStructureConverter)
 - [Generators](./Generators/__NAMESPACE__.md)
     - [Random](./Generators/Random/__NAMESPACE__.md)
         - [Distributions](./Generators/Random/Distributions/__NAMESPACE__.md)
@@ -53,32 +57,6 @@
             - [ExponentialDistribution](Generators/Random/Distributions/__NAMESPACE__.md#ExponentialDistribution)
             - [UniformDistribution](Generators/Random/Distributions/__NAMESPACE__.md#UniformDistribution)
         - [Random](Generators/Random/__NAMESPACE__.md#Random)
-- [Serializable](__NAMESPACE__.md#Serializable)
-- [SerializableChecker](__NAMESPACE__.md#SerializableChecker)
 
 
 ---
-<a name="Serializable"></a>
-## Serializable
-
-**Trait**  : Zuffik\Srvant\Serializable
-
-### Public methods
-
-| Method | Description |
-|---|---|
-| `toArray` |  |
-| `__debugInfo` |  |
-
-<a name="SerializableChecker"></a>
-## SerializableChecker
-
-**Trait**  : Zuffik\Srvant\SerializableChecker
-
-### Public methods
-
-| Method | Description |
-|---|---|
-| `isSerializable` |  |
-| `serializable` |  |
-

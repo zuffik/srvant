@@ -10,8 +10,8 @@ namespace Zuffik\Test\Srvant;
 
 use PHPUnit\Framework\TestCase;
 use Exception;
-use Zuffik\Srvant\Data\ArrayList;
-use Zuffik\Srvant\Data\HashMap;
+use Zuffik\Srvant\Structures\Lists\ArrayList;
+use Zuffik\Srvant\Structures\Maps\HashMap;
 use Zuffik\Test\Srvant\Objects\ReturnsObject;
 
 class StructuresTest extends TestCase

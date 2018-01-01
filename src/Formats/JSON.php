@@ -10,18 +10,22 @@ namespace Zuffik\Srvant\Formats;
 
 
 use ArrayAccess;
-use Zuffik\Srvant\Data\Structure;
-use Zuffik\Srvant\Convertors\ArraySerializableConvertor;
-use Zuffik\Srvant\Serializable;
+use Iterator;
+use Zuffik\Srvant\Convertors\ArrayStructureConverter;
+use Zuffik\Srvant\Structures\Structure;
 
-class JSON implements ArrayAccess, \Iterator
+/**
+ * Class JSON. Class for working with JSON format.
+ * @package Zuffik\Srvant\Formats
+ */
+class JSON implements ArrayAccess, Iterator
 {
-    use Serializable;
-    /** @var Structure */
+    /** @var array */
     private $array;
 
     /**
-     * JSON constructor.
+     * JSON constructor. Param can be any of json-compatible types (array types, string or JSON class itself).
+     * Also checks for it validity.
      * @param array|Structure|string|JSON $json
      * @throws \Exception
      */
@@ -33,13 +37,13 @@ class JSON implements ArrayAccess, \Iterator
                 $error = json_last_error_msg();
                 throw new \InvalidArgumentException("Empty or corrupted JSON string: $error ($json)");
             }
-            $this->array = ArraySerializableConvertor::toSerializable($decoded);
+            $this->array = ArrayStructureConverter::toStructure($decoded);
         } else if($json instanceof Structure) {
             $this->array = $json;
         } else if($json instanceof JSON) {
             $this->array = $json->array;
         } else {
-            $this->array = ArraySerializableConvertor::toSerializable($json);
+            $this->array = ArrayStructureConverter::toStructure($json);
         }
     }
 
@@ -64,7 +68,7 @@ class JSON implements ArrayAccess, \Iterator
      */
     public function __toString()
     {
-        return json_encode(ArraySerializableConvertor::toArray($this->array));
+        return json_encode(ArrayStructureConverter::toArray($this->array));
     }
 
     /**
@@ -81,7 +85,7 @@ class JSON implements ArrayAccess, \Iterator
      */
     public function offsetExists($offset)
     {
-        return true;
+        return array_key_exists($offset, $this->array);
     }
 
     /**
@@ -137,7 +141,7 @@ class JSON implements ArrayAccess, \Iterator
      */
     public function current()
     {
-        return $this->array->current();
+        return current($this->array);
     }
 
     /**
@@ -148,7 +152,7 @@ class JSON implements ArrayAccess, \Iterator
      */
     public function next()
     {
-        $this->array->next();
+        next($this->array);
     }
 
     /**
@@ -159,7 +163,7 @@ class JSON implements ArrayAccess, \Iterator
      */
     public function key()
     {
-        return $this->array->key();
+        return key($this->array);
     }
 
     /**
@@ -171,7 +175,7 @@ class JSON implements ArrayAccess, \Iterator
      */
     public function valid()
     {
-        return $this->array->valid();
+        return $this->offsetExists(key($this->array));
     }
 
     /**
@@ -182,6 +186,6 @@ class JSON implements ArrayAccess, \Iterator
      */
     public function rewind()
     {
-        $this->array->valid();
+        reset($this->array);
     }
 }

@@ -12,10 +12,11 @@ namespace Zuffik\Srvant\Helpers;
 class Finder
 {
     /**
+     * Recursively find item with given criteria.
      * @param \Iterator|array $iterable
      * @param mixed $search
      * @param string|string[] $method
-     * @param bool $strict
+     * @param bool $strict whether use == or ===
      * @return mixed
      * @throws \Exception
      */

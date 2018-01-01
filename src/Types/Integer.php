@@ -8,7 +8,10 @@
 
 namespace Zuffik\Srvant\Types;
 
-
+/**
+ * Integer wrapper
+ * @package Zuffik\Srvant\Types
+ */
 class Integer extends Number
 {
     /**

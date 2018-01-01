@@ -26,5 +26,5 @@
 
 | Method | Description |
 |---|---|
-| `process` |  |
+| `process` | Returns processed string. |
 

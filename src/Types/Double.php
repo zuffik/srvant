@@ -8,7 +8,10 @@
 
 namespace Zuffik\Srvant\Types;
 
-
+/**
+ * Double (float) wrapper
+ * @package Zuffik\Srvant\Types
+ */
 class Double extends Number
 {
     /**

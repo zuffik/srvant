@@ -9,9 +9,20 @@
 namespace Zuffik\Srvant\Formats;
 
 
-use Zuffik\Srvant\Convertors\ArraySerializableConvertor;
-use Zuffik\Srvant\Data\ArrayList;
+use Zuffik\Srvant\Convertors\ArrayStructureConverter;
+use Zuffik\Srvant\Structures\Lists\ArrayList;
 
+/**
+ * Class CSV. Usage:
+ * ```php
+ * $csv = new CSV('path/to/csv.csv', ',', "'");
+ * foreach($csv as $line) {
+ *  print_r($line);
+ *  // prints ArrayList containing a line
+ * }
+ * ```
+ * @package Zuffik\Srvant\Formats
+ */
 class CSV implements \Iterator
 {
     /**
@@ -33,7 +44,7 @@ class CSV implements \Iterator
     /**
      * @var int
      */
-    private $line = 0;
+    private $line;
     /**
      * @var array|boolean
      */
@@ -45,12 +56,13 @@ class CSV implements \Iterator
      * @param string $delimiter
      * @param string $enclosure
      * @param string $escape
+     * @param bool $hasHead
      * @throws \Exception
      */
-    public function __construct($data, $delimiter = ';', $enclosure = '"', $escape = '\\')
+    public function __construct($data, $delimiter = ';', $enclosure = '"', $escape = '\\', $hasHead = true)
     {
         if(is_array($data)) {
-            $data = ArraySerializableConvertor::toSerializable($data);
+            $data = ArrayStructureConverter::toStructure($data);
             if(!empty($data->toArray()) > 0 && !$data[0] instanceof ArrayList) {
                 $data = \arrayList([$data]);
             }
@@ -67,6 +79,7 @@ class CSV implements \Iterator
         $this->delimiter = $delimiter;
         $this->enclosure = $enclosure;
         $this->escape = $escape;
+        $this->line = intval($hasHead);
     }
 
     /**

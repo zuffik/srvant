@@ -11,6 +11,10 @@ namespace Zuffik\Srvant\Types\StringActions\Partitioning;
 
 use Zuffik\Srvant\Types\Enum;
 
+/**
+ * Enumerator for string actions
+ * @package Zuffik\Srvant\Types\StringActions\Partitioning
+ */
 class StringPartition extends Enum
 {
     const STR_PART_UNTIL_FIRST = UntilFirst::class;

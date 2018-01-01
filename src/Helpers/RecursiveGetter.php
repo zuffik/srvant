@@ -14,6 +14,8 @@ use Exception;
 class RecursiveGetter
 {
     /**
+     * Elementary action used in Finder.
+     * It either calls method on item or use $methodKey (or its elements) as array index and returns it.
      * @param object|array $item
      * @param string|string[] $methodKey
      * @return mixed

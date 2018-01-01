@@ -6,14 +6,14 @@
  * Time: 10:57
  */
 
-namespace Zuffik\Srvant\Data;
+namespace Zuffik\Srvant\Structures\Maps;
 
 
 use Zuffik\Srvant\Serializable;
+use Zuffik\Srvant\Structures\IArray;
 
-class KeyValue
+class KeyValue implements IArray
 {
-    use Serializable;
     /** @var int|string */
     private $key;
     /** @var mixed */

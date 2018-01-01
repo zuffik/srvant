@@ -9,8 +9,12 @@
 namespace Zuffik\Srvant\Formats;
 
 
-use Zuffik\Srvant\Data\HashMap;
+use Zuffik\Srvant\Structures\Maps\HashMap;
 
+/**
+ * Class URL for parsing and building url.
+ * @package Zuffik\Srvant\Formats
+ */
 class URL
 {
     const PATTERN = '/^((https?):\/\/)?(([a-z0-9_-]+)\.)?(([a-z0-9_-]+)\.([a-z.0-9]+)|localhost)(\/[^?]*)?(\?.*)?$/';
@@ -41,6 +45,10 @@ class URL
         }
     }
 
+    /**
+     * Parses given url using self::PATTERN regex
+     * @param $url
+     */
     public function parseUrl($url)
     {
         preg_match(self::PATTERN, $url, $m);
@@ -58,6 +66,10 @@ class URL
         }
     }
 
+    /**
+     * Builds entire URL address with properties
+     * @return string
+     */
     public function getAbsoluteUrl()
     {
         return empty($this->fullUrl) ? sprintf(
@@ -73,6 +85,7 @@ class URL
     }
 
     /**
+     * Returns domain (eg. google)
      * @return string
      */
     public function getDomain()
@@ -81,6 +94,7 @@ class URL
     }
 
     /**
+     * Setter for domain
      * @param string $domain
      * @return URL
      */
@@ -91,6 +105,7 @@ class URL
     }
 
     /**
+     * Returns protocol (eg. http)
      * @return string
      */
     public function getProtocol()
@@ -99,6 +114,7 @@ class URL
     }
 
     /**
+     * Setter for protocol
      * @param string $protocol
      * @return URL
      */
@@ -109,6 +125,7 @@ class URL
     }
 
     /**
+     * Returns subdomain (eg. gist)
      * @return string
      */
     public function getSubdomain()
@@ -117,6 +134,7 @@ class URL
     }
 
     /**
+     * Setter for subdomain
      * @param string $subdomain
      * @return URL
      */
@@ -127,6 +145,7 @@ class URL
     }
 
     /**
+     * Returns top level domain (eg. com)
      * @return string
      */
     public function getTld()
@@ -135,6 +154,7 @@ class URL
     }
 
     /**
+     * Setter for top level domain
      * @param string $tld
      * @return URL
      */
@@ -145,6 +165,7 @@ class URL
     }
 
     /**
+     * Returns requested URL (eg. index.php)
      * @return string
      */
     public function getRequestedURL()
@@ -153,6 +174,7 @@ class URL
     }
 
     /**
+     * Setter for requested URL
      * @param string $requestedURL
      * @return URL
      */
@@ -163,6 +185,7 @@ class URL
     }
 
     /**
+     * Returns query parameters in Map (eg. ['foo' => 'bar', 'baz' => 1]
      * @return HashMap
      */
     public function getQueryParams()
@@ -171,6 +194,7 @@ class URL
     }
 
     /**
+     * Setter for query parameters
      * @param HashMap $queryParams
      * @return URL
      */
@@ -186,16 +210,21 @@ class URL
     }
 
     /**
+     * Add query parameter
      * @param string $name
      * @param string $value
      * @return URL
      */
     public function addQueryParam($name, $value)
     {
-        $this->queryParams->put($name, $value);
+        $this->queryParams->set($name, $value);
         return $this;
     }
 
+    /**
+     * Returns absolute URL
+     * @return string
+     */
     public function __toString()
     {
         return $this->getAbsoluteUrl();

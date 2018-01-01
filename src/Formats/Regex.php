@@ -18,8 +18,9 @@ class Regex
     private $regex;
 
     /**
-     * Regex constructor.
+     * Regex constructor. Also checks for it validity.
      * @param string|Str $regex
+     * @throws InvalidArgumentException
      */
     public function __construct($regex)
     {
@@ -30,6 +31,7 @@ class Regex
     }
 
     /**
+     * Returns regex
      * @return Str
      */
     public function getRegex()
@@ -38,6 +40,7 @@ class Regex
     }
 
     /**
+     * Matches subject returning array of matches.
      * @param string|Str $subject
      * @param bool $global
      * @return array|null
@@ -53,6 +56,7 @@ class Regex
     }
 
     /**
+     * Replaces matches in $subject with $replace
      * @param string|Str $subject
      * @param string|Str|callable $replace
      * @return mixed
@@ -67,6 +71,7 @@ class Regex
     }
 
     /**
+     * Returns regular expression
      * @return string
      */
     public function __toString()

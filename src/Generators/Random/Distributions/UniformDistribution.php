@@ -9,8 +9,10 @@
 namespace Zuffik\Srvant\Generators\Random\Distributions;
 
 
-use SebastianBergmann\CodeCoverage\Report\PHP;
-
+/**
+ * U(from, to)
+ * @package Zuffik\Srvant\Generators\Random\Distributions
+ */
 class UniformDistribution extends Distribution
 {
     /**
@@ -34,7 +36,7 @@ class UniformDistribution extends Distribution
     }
 
     /**
-     * @return float
+     * @inheritdoc
      */
     public function nextFloat()
     {

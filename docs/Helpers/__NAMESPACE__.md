@@ -19,7 +19,7 @@
 
 | Method | Description |
 |---|---|
-| `find` |  |
+| `find` | Recursively find item with given criteria. |
 
 <a name="RecursiveGetter"></a>
 ## RecursiveGetter
@@ -30,5 +30,5 @@
 
 | Method | Description |
 |---|---|
-| `get` |  |
+| `get` | Elementary action used in Finder. It either calls method on item or use $methodKey (or its elements) as array index and returns it. |
 

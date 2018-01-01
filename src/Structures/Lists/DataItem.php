@@ -6,14 +6,14 @@
  * Time: 22:16
  */
 
-namespace Zuffik\Srvant\Data;
+namespace Zuffik\Srvant\Structures\Lists;
 
 
-use Zuffik\Srvant\Serializable;
 
-class DataItem
+use Zuffik\Srvant\Structures\IArray;
+
+class DataItem implements IArray
 {
-    use Serializable;
     /**
      * @var mixed
      */

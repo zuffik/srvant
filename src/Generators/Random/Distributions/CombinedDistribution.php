@@ -8,7 +8,12 @@
 
 namespace Zuffik\Srvant\Generators\Random\Distributions;
 
-
+/**
+ * Class CombinedDistribution is used for combining multiple distributions.
+ * Generated numbers can be added, subtracted, multiplied and divided. All of these actions is
+ * picked up randomly.
+ * @package Zuffik\Srvant\Generators\Random\Distributions
+ */
 class CombinedDistribution extends Distribution
 {
     /**
@@ -28,7 +33,7 @@ class CombinedDistribution extends Distribution
      * CombinedDistribution constructor.
      * @param Distribution $distribution1
      * @param Distribution $distribution2
-     * @param string $operations
+     * @param string $operations that are allowed to pick up.
      */
     public function __construct(Distribution $distribution1, Distribution $distribution2, $operations = '+-')
     {
@@ -38,8 +43,7 @@ class CombinedDistribution extends Distribution
     }
 
     /**
-     * @return float
-     * @throws \Exception
+     * @inheritdoc
      */
     public function nextFloat()
     {
@@ -59,6 +63,7 @@ class CombinedDistribution extends Distribution
     }
 
     /**
+     * Add numbers
      * @param float $n1
      * @param float $n2
      * @return float
@@ -69,6 +74,7 @@ class CombinedDistribution extends Distribution
     }
 
     /**
+     * Subtract numbers
      * @param float $n1
      * @param float $n2
      * @return float
@@ -79,6 +85,7 @@ class CombinedDistribution extends Distribution
     }
 
     /**
+     * Multiply numbers
      * @param float $n1
      * @param float $n2
      * @return float
@@ -89,6 +96,7 @@ class CombinedDistribution extends Distribution
     }
 
     /**
+     * Divide numbers
      * @param float $n1
      * @param float $n2
      * @return float

@@ -16,7 +16,7 @@ class CSVTest extends TestCase
     public function test()
     {
         $handle = fopen(__DIR__ . '/../data/example.csv', 'r');
-        $csv = csv($handle);
+        $csv = csv($handle, ';', '"', '\\', false);
         foreach ($csv as $i => $item) {
             if($i % 2 == 0) {
                 $this->assertEquals(arrayList(['foo', 'bar', 5, 6.7]), $item);

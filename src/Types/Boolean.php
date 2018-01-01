@@ -8,6 +8,10 @@
 
 namespace Zuffik\Srvant\Types;
 
+/**
+ * Boolean wrapper
+ * @package Zuffik\Srvant\Types
+ */
 class Boolean
 {
     /** @var boolean */

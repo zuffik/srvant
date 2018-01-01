@@ -12,6 +12,10 @@ namespace Zuffik\Srvant\Types\StringActions\Partitioning;
 use Zuffik\Srvant\Types\Str;
 use Zuffik\Srvant\Types\StringActions\Action;
 
+/**
+ * Interface PartitionAction offers method for String Partitioning
+ * @package Zuffik\Srvant\Types\StringActions\Partitioning
+ */
 interface PartitionAction extends Action
 {
     /**

@@ -1,14 +1,14 @@
 <?php
 
-use Zuffik\Srvant\Data\ArrayList;
-use Zuffik\Srvant\Data\BasicStructure;
-use Zuffik\Srvant\Data\HashMap;
-use Zuffik\Srvant\Data\LinkedList;
+use Zuffik\Srvant\Generators\Random\Random;
 use Zuffik\Srvant\Formats\CSV;
 use Zuffik\Srvant\Formats\JSON;
-use Zuffik\Srvant\Formats\Random;
 use Zuffik\Srvant\Formats\Regex;
 use Zuffik\Srvant\Formats\URL;
+use Zuffik\Srvant\Structures\Lists\ArrayList;
+use Zuffik\Srvant\Structures\Lists\LinkedList;
+use Zuffik\Srvant\Structures\Maps\HashMap;
+use Zuffik\Srvant\Structures\Structure;
 use Zuffik\Srvant\Types\Boolean;
 use Zuffik\Srvant\Types\Double;
 use Zuffik\Srvant\Types\Integer;
@@ -39,7 +39,7 @@ if(!function_exists('regex')) {
 
 if(!function_exists('json')) {
     /**
-     * @param array|BasicStructure|string|JSON $json
+     * @param array|Structure|string|JSON $json
      * @return JSON
      */
     function json($json)
@@ -50,7 +50,7 @@ if(!function_exists('json')) {
 
 if(!function_exists('arrayList')) {
     /**
-     * @param array|BasicStructure $param
+     * @param array|Structure $param
      * @return ArrayList
      */
     function arrayList($param = [])
@@ -61,7 +61,7 @@ if(!function_exists('arrayList')) {
 
 if(!function_exists('linkedList')) {
     /**
-     * @param array|BasicStructure $param
+     * @param array|Structure $param
      * @return LinkedList
      */
     function linkedList($param = [])
@@ -72,7 +72,7 @@ if(!function_exists('linkedList')) {
 
 if(!function_exists('hashMap')) {
     /**
-     * @param array|BasicStructure $param
+     * @param array|Structure $param
      * @return HashMap
      */
     function hashMap($param = [])
@@ -142,8 +142,8 @@ if(!function_exists('url')) {
 }
 
 if(!function_exists('csv')) {
-    function csv($data, $delimiter = ';', $enclosure = '"', $escape = '\\')
+    function csv($data, $delimiter = ';', $enclosure = '"', $escape = '\\', $hasHead = true)
     {
-        return new CSV($data, $delimiter, $enclosure, $escape);
+        return new CSV($data, $delimiter, $enclosure, $escape, $hasHead);
     }
 }

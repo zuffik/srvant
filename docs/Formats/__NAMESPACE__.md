@@ -9,7 +9,6 @@
 - [Regex](__NAMESPACE__.md#Regex)
 - [URL](__NAMESPACE__.md#URL)
 - [CSV](__NAMESPACE__.md#CSV)
-- [Random](__NAMESPACE__.md#Random)
 - [JSON](__NAMESPACE__.md#JSON)
 
 
@@ -23,7 +22,7 @@
 
 | Method | Description |
 |---|---|
-| `format` |  |
+| `format` | Formats a exception to readable format. |
 
 <a name="Regex"></a>
 ## Regex
@@ -34,10 +33,10 @@
 
 | Method | Description |
 |---|---|
-| `getRegex` |  |
-| `match` |  |
-| `replace` |  |
-| `__toString` |  |
+| `getRegex` | Returns regex |
+| `match` | Matches subject returning array of matches. |
+| `replace` | Replaces matches in $subject with $replace |
+| `__toString` | Returns regular expression |
 
 <a name="URL"></a>
 ## URL
@@ -48,22 +47,22 @@
 
 | Method | Description |
 |---|---|
-| `parseUrl` |  |
-| `getAbsoluteUrl` |  |
-| `getDomain` |  |
-| `setDomain` |  |
-| `getProtocol` |  |
-| `setProtocol` |  |
-| `getSubdomain` |  |
-| `setSubdomain` |  |
-| `getTld` |  |
-| `setTld` |  |
-| `getRequestedURL` |  |
-| `setRequestedURL` |  |
-| `getQueryParams` |  |
-| `setQueryParams` |  |
-| `addQueryParam` |  |
-| `__toString` |  |
+| `parseUrl` | Parses given url using self::PATTERN regex |
+| `getAbsoluteUrl` | Builds entire URL address with properties |
+| `getDomain` | Returns domain (eg. google) |
+| `setDomain` | Setter for domain |
+| `getProtocol` | Returns protocol (eg. http) |
+| `setProtocol` | Setter for protocol |
+| `getSubdomain` | Returns subdomain (eg. gist) |
+| `setSubdomain` | Setter for subdomain |
+| `getTld` | Returns top level domain (eg. com) |
+| `setTld` | Setter for top level domain |
+| `getRequestedURL` | Returns requested URL (eg. index.php) |
+| `setRequestedURL` | Setter for requested URL |
+| `getQueryParams` | Returns query parameters in Map (eg. ['foo' =&gt; 'bar', 'baz' =&gt; 1] |
+| `setQueryParams` | Setter for query parameters |
+| `addQueryParam` | Add query parameter |
+| `__toString` | Returns absolute URL |
 
 <a name="CSV"></a>
 ## CSV
@@ -79,19 +78,6 @@
 | `key` | Return the key of the current element |
 | `valid` | Checks if current position is valid |
 | `rewind` | Rewind the Iterator to the first element |
-
-<a name="Random"></a>
-## Random
-
-**Class**  : Zuffik\Srvant\Formats\Random
-
-### Public methods
-
-| Method | Description |
-|---|---|
-| `integer` |  |
-| `decimal` |  |
-| `string` |  |
 
 <a name="JSON"></a>
 ## JSON
@@ -114,5 +100,4 @@
 | `key` | Return the key of the current element |
 | `valid` | Checks if current position is valid |
 | `rewind` | Rewind the Iterator to the first element |
-| `__debugInfo` |  |
 

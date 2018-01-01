@@ -6,7 +6,7 @@
 # Overview
 
 - [FromScalar](__NAMESPACE__.md#FromScalar)
-- [ArraySerializableConvertor](__NAMESPACE__.md#ArraySerializableConvertor)
+- [ArrayStructureConverter](__NAMESPACE__.md#ArrayStructureConverter)
 
 
 ---
@@ -19,19 +19,17 @@
 
 | Method | Description |
 |---|---|
-| `formatInput` |  |
+| `formatInput` | Make object from scalar type (eg. serialized string) or returns given parameter. |
 
-<a name="ArraySerializableConvertor"></a>
-## ArraySerializableConvertor
+<a name="ArrayStructureConverter"></a>
+## ArrayStructureConverter
 
-**Class**  : Zuffik\Srvant\Convertors\ArraySerializableConvertor
+**Class**  : Zuffik\Srvant\Convertors\ArrayStructureConverter
 
 ### Public methods
 
 | Method | Description |
 |---|---|
-| `toArray` |  |
-| `toSerializable` |  |
-| `isSerializable` |  |
-| `serializable` |  |
+| `toArray` | Converts Structure to array |
+| `toStructure` | Converts array to structure. Also checks for continuous indexes to determine if it is Map or List |
 

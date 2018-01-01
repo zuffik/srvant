@@ -11,8 +11,15 @@ namespace Zuffik\Srvant\Types\StringActions\Partitioning;
 
 use Zuffik\Srvant\Types\Str;
 
+/**
+ * Class UntilFirst splits string from first character position to first provided character position.
+ * @package Zuffik\Srvant\Types\StringActions\Partitioning
+ */
 class UntilFirst implements PartitionAction
 {
+    /**
+     * @inheritdoc
+     */
     public function process(Str $str, $character = '')
     {
         $pos = intval($str->find($character));

@@ -13,6 +13,19 @@ use Zuffik\Srvant\Formats\Regex;
 use Zuffik\Srvant\Types\StringActions\Partitioning\PartitionAction;
 use Zuffik\Srvant\Types\StringActions\Partitioning\StringPartition;
 
+/**
+ * String wrapper
+ * Usage:
+ * ```php
+ * $str = string('Hallo world')
+ *  ->replace('a', 'e')
+ *  ->lowerCase()
+ *  ->slugify()
+ *  ->upperCase();
+ * echo $str; // HELLO-WORLD
+ * ```
+ * @package Zuffik\Srvant\Types
+ */
 class Str implements \Countable
 {
     /**
@@ -30,6 +43,14 @@ class Str implements \Countable
     }
 
     /**
+     * @inheritDoc
+     */
+    public function __debugInfo()
+    {
+        return $this->string;
+    }
+
+    /**
      * @param string $name
      * @param array ...$args
      * @return mixed
@@ -40,6 +61,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see str_replace()
      * @param string|Str|Regex $search
      * @param string|Str $replace
      * @return Str
@@ -62,6 +84,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see strtoupper()
      * @return Str
      */
     public function toUppercase()
@@ -71,6 +94,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see strtolower()
      * @return Str
      */
     public function toLowercase()
@@ -80,6 +104,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see Str::toUppercase()
      * @return Str
      */
     public function toUpper()
@@ -88,6 +113,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see Str::toLowercase()
      * @return Str
      */
     public function toLower()
@@ -96,6 +122,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see ucfirst()
      * @return Str
      */
     public function capitalize()
@@ -105,6 +132,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see lcfirst()
      * @return Str
      */
     public function lowerFirst()
@@ -114,6 +142,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see ucwords()
      * @return Str
      */
     public function capitalizeAll()
@@ -123,6 +152,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see substr()
      * @param int $start
      * @param int $length
      * @return Str
@@ -134,6 +164,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see strpos()
      * @param Str|string $string
      * @return bool
      */
@@ -143,6 +174,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see trim()
      * @param string $charlist
      * @return Str
      */
@@ -153,6 +185,7 @@ class Str implements \Countable
     }
 
     /**
+     * Returns true if string is ''
      * @return bool
      */
     public function isEmpty()
@@ -161,6 +194,7 @@ class Str implements \Countable
     }
 
     /**
+     * Makes slug from containing string
      * @param string $delimiter
      * @return Str
      * @see https://gist.github.com/james2doyle/9158349
@@ -183,6 +217,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see Str::slug()
      * @return Str
      */
     public function slugify()
@@ -191,6 +226,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see str_pad()
      * @param Integer|int $length
      * @param string|Str $string
      * @param Integer|int $side
@@ -208,6 +244,7 @@ class Str implements \Countable
     }
 
     /**
+     * Makes upper camel case from containing string
      * @return Str
      */
     public function upperCamelCase()
@@ -218,6 +255,7 @@ class Str implements \Countable
     }
 
     /**
+     * Makes lower camel case from containing string
      * @return Str
      */
     public function lowerCamelCase()
@@ -227,8 +265,8 @@ class Str implements \Countable
     }
 
     /**
-     * @return Str
      * @see Str::lowerCamelCase()
+     * @return Str
      */
     public function camelCase()
     {
@@ -236,8 +274,8 @@ class Str implements \Countable
     }
 
     /**
-     * @return Str
      * @see Str::lowerCamelCase()
+     * @return Str
      */
     public function toCamelCase()
     {
@@ -245,8 +283,8 @@ class Str implements \Countable
     }
 
     /**
-     * @return Str
      * @see Str::lowerCamelCase()
+     * @return Str
      */
     public function toLowerCamelCase()
     {
@@ -254,8 +292,8 @@ class Str implements \Countable
     }
 
     /**
-     * @return Str
      * @see Str::upperCamelCase()
+     * @return Str
      */
     public function toUpperCamelCase()
     {
@@ -263,6 +301,7 @@ class Str implements \Countable
     }
 
     /**
+     * Makes camel case
      * @return Str
      */
     public function snakeCase()
@@ -272,6 +311,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see Str::snakeCase()
      * @return Str
      */
     public function toSnakeCase()
@@ -293,7 +333,6 @@ class Str implements \Countable
 
     /**
      * Format string
-     *
      * @see sprintf()
      * @param array $args
      * @return Str
@@ -313,7 +352,6 @@ class Str implements \Countable
 
     /**
      * Returns NEW formatted string string
-     *
      * @see sprintf()
      * @param array $args
      * @return Str
@@ -326,6 +364,7 @@ class Str implements \Countable
     }
 
     /**
+     * Setter for value
      * @param string|Str $string
      * @return Str
      */
@@ -336,6 +375,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see strlen()
      * Count elements of an object
      * @link http://php.net/manual/en/countable.count.php
      * @return int The custom count as an integer.
@@ -350,6 +390,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see Str::count()
      * @return int
      */
     public function length()
@@ -358,6 +399,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see strpos()
      * @param Str|string $subString
      * @return int
      */
@@ -369,7 +411,7 @@ class Str implements \Countable
 
     /**
      * @param string $delimiter
-     * @return \Zuffik\Srvant\Data\ArrayList
+     * @return \Zuffik\Srvant\Structures\ArrayList
      */
     public function split($delimiter = ' ')
     {
@@ -377,9 +419,12 @@ class Str implements \Countable
     }
 
     /**
+     * String partition
+     * @see StringPartition
      * @param Str|string $character
      * @param string $type
      * @return Str
+     * @throws \Exception
      */
     public function part($character, $type)
     {
@@ -390,6 +435,7 @@ class Str implements \Countable
     }
 
     /**
+     * @see substr_count()
      * @param string|Str $char
      * @return int
      */
@@ -399,6 +445,7 @@ class Str implements \Countable
     }
 
     /**
+     * Removes accents
      * @return Str
      */
     public function removeAccents()
@@ -408,6 +455,7 @@ class Str implements \Countable
     }
 
     /**
+     * Random substring from given string
      * @param int $length
      * @return Str
      * @throws \Exception
@@ -421,6 +469,7 @@ class Str implements \Countable
     }
 
     /**
+     * Returns new instance with same content
      * @return Str
      */
     public function copy()

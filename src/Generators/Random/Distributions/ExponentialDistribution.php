@@ -8,7 +8,10 @@
 
 namespace Zuffik\Srvant\Generators\Random\Distributions;
 
-
+/**
+ * E(lambda, tau = 100)
+ * @package Zuffik\Srvant\Generators\Random\Distributions
+ */
 class ExponentialDistribution extends Distribution
 {
     /**
