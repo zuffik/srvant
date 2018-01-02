@@ -9,14 +9,9 @@
 namespace Zuffik\Srvant\Structures\Maps;
 
 
-use Exception;
-use Generator;
-use Zuffik\Srvant\Helpers\Finder;
-use Zuffik\Srvant\Serializable;
-use Zuffik\Srvant\SerializableChecker;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
-use Zuffik\Srvant\Structures\Maps\KeyValue;
 use Zuffik\Srvant\Structures\AbstractStructure;
+use Zuffik\Srvant\Structures\Structure;
 
 class HashMap extends AbstractStructure
 {
