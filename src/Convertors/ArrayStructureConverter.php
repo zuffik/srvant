@@ -48,6 +48,9 @@ class ArrayStructureConverter
      */
     public static function toStructure($array)
     {
+        if(!$array) {
+            return null;
+        }
         $serializable = array_keys($array) !== range(0, count($array) - 1) ? new HashMap() : new ArrayList();
         foreach ($array as $key => $value) {
             if($serializable instanceof HashMap) {

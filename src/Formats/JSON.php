@@ -42,8 +42,10 @@ class JSON implements ArrayAccess, Iterator
             $this->array = $json;
         } else if($json instanceof JSON) {
             $this->array = $json->array;
-        } else {
+        } else if(!empty($json)) {
             $this->array = ArrayStructureConverter::toStructure($json);
+        } else {
+            $this->array = [];
         }
     }
 

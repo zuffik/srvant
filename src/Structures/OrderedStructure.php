@@ -203,6 +203,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      */
     private function joinLevel($glue, $level)
     {
+        $level = $level instanceof Structure ? $level->toArray() : $level;
         foreach ($level as $i => $item) {
             if (is_array($item) || $item instanceof OrderedStructure) {
                 $level[$i] = $this->joinLevel($glue, $item);
