@@ -39,14 +39,6 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
     }
 
     /**
-     * Iterates over each item in List and pass it in closure
-     * (param: $item, $key, returns: mixed - value that will be replaced in list)
-     * @param callable $callable
-     * @return OrderedStructure
-     */
-    public abstract function map($callable);
-
-    /**
      * Add value to end of List
      * @param mixed $value
      * @return OrderedStructure

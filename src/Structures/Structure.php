@@ -116,4 +116,12 @@ interface Structure extends Countable, ArrayAccess, JsonSerializable, IArray
      * @return Structure
      */
     public function unify();
+
+    /**
+     * Iterates over each item in List and pass it in closure
+     * (param: $item, $key, returns: mixed - value that will be replaced in list)
+     * @param callable $callable
+     * @return Structure
+     */
+    public function map($callable);
 }

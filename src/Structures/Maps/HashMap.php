@@ -164,4 +164,16 @@ class HashMap extends AbstractStructure
     {
         return $this->iterator;
     }
+
+    /**
+     * Iterates over each item in List and pass it in closure
+     * (param: $item, $key, returns: mixed - value that will be replaced in list)
+     * @param callable $callable
+     * @return Structure
+     */
+    public function map($callable)
+    {
+        $this->array = array_map($callable, $this->array, array_keys($this->array));
+        return $this;
+    }
 }
