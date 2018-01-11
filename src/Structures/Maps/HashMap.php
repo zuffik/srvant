@@ -9,6 +9,7 @@
 namespace Zuffik\Srvant\Structures\Maps;
 
 
+use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Structures\AbstractStructure;
 use Zuffik\Srvant\Structures\Structure;
@@ -33,10 +34,10 @@ class HashMap extends AbstractStructure
         if(empty($param)) {
             $param = [];
         }
-        if (!$param instanceof Structure && !is_array($param)) {
-            throw new \Exception('Argument passed to HashMap must be type of array or instance of Serializable. ' . gettype($param) . ' given.');
+        if (!$param instanceof IArray && !is_array($param)) {
+            throw new \Exception('Argument passed to HashMap must be type of array or instance of IArray. ' . gettype($param) . ' given.');
         }
-        $this->array = $param instanceof Structure ? $param->toArray() : $param;
+        $this->array = $param instanceof IArray ? $param->toArray() : $param;
         $this->iterator = new ArrayList();
         foreach ($param as $key => $item) {
             $this->iterator->push(new KeyValue($key, $item));
@@ -73,7 +74,7 @@ class HashMap extends AbstractStructure
      */
     public function filter($callable)
     {
-        $this->array = array_filter($this->array, $callable);
+        $this->array = array_filter($this->array, $callable, ARRAY_FILTER_USE_BOTH);
         return $this;
     }
 

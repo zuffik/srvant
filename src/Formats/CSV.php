@@ -10,6 +10,7 @@ namespace Zuffik\Srvant\Formats;
 
 
 use Zuffik\Srvant\Convertors\ArrayStructureConverter;
+use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
 
 /**
@@ -23,7 +24,7 @@ use Zuffik\Srvant\Structures\Lists\ArrayList;
  * ```
  * @package Zuffik\Srvant\Formats
  */
-class CSV implements \Iterator
+class CSV implements \Iterator, IArray
 {
     /**
      * @var ArrayList|resource
@@ -157,5 +158,18 @@ class CSV implements \Iterator
         } else {
             rewind($this->data);
         }
+    }
+
+    /**
+     * Every object can be converted to array due to high native PHP compatibility.
+     * @return array
+     */
+    public function toArray()
+    {
+        $result = [];
+        foreach ($this as $item) {
+            $result[] = $item;
+        }
+        return $result;
     }
 }

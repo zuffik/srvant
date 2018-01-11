@@ -10,6 +10,7 @@ namespace Zuffik\Srvant\Structures\Lists;
 
 
 use Exception;
+use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\OrderedStructure;
 use Zuffik\Srvant\Structures\Structure;
 
@@ -36,13 +37,13 @@ class ArrayList extends OrderedStructure
         if (empty($param)) {
             $param = [];
         }
-        if (!$param instanceof Structure && !is_array($param)) {
+        if (!$param instanceof IArray && !is_array($param)) {
             throw new Exception(
-                'Argument #1 of ' . get_class($this) . '::__construct must be an array or instance of Structure. ' .
+                'Argument #1 of ' . get_class($this) . '::__construct must be an array or instance of IArray. ' .
                 (is_object($param) ? 'Instance of ' . get_class($param) : gettype($param)) . ' given'
             );
         }
-        $this->array = array_values($param instanceof Structure ? $param->toArray() : $param);
+        $this->array = array_values($param instanceof IArray ? $param->toArray() : $param);
     }
 
     /**
@@ -121,12 +122,12 @@ class ArrayList extends OrderedStructure
      */
     public function merge($structure)
     {
-        if ($structure instanceof Structure) {
+        if ($structure instanceof IArray) {
             $structure = $structure->toArray();
         }
         if (!is_array($structure)) {
             throw new Exception(
-                'Argument #1 of ' . get_class($this) . '::mergeWith must be an array or instance of Structure. ' .
+                'Argument #1 of ' . get_class($this) . '::mergeWith must be an array or instance of IArray. ' .
                 (is_object($structure) ? 'Instance of ' . get_class($structure) : gettype($structure)) . ' given'
             );
         }
@@ -197,6 +198,17 @@ class ArrayList extends OrderedStructure
     public function unify()
     {
         $this->array = array_values(array_map('unserialize', array_unique(array_map('serialize', $this->array))));
+        return $this;
+    }
+
+    /**
+     * Add value to beginning of List
+     * @param mixed $value
+     * @return OrderedStructure
+     */
+    public function pushFirst($value)
+    {
+        $this->array = array_merge([$value], $this->array);
         return $this;
     }
 }

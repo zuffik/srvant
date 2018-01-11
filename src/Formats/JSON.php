@@ -12,15 +12,16 @@ namespace Zuffik\Srvant\Formats;
 use ArrayAccess;
 use Iterator;
 use Zuffik\Srvant\Convertors\ArrayStructureConverter;
+use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Structure;
 
 /**
  * Class JSON. Class for working with JSON format.
  * @package Zuffik\Srvant\Formats
  */
-class JSON implements ArrayAccess, Iterator
+class JSON implements ArrayAccess, Iterator, IArray
 {
-    /** @var array */
+    /** @var Structure */
     private $array;
 
     /**

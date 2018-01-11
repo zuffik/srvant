@@ -314,6 +314,19 @@ class LinkedList extends OrderedStructure
         foreach ($this as $item) {
             $array[] = serialize($item);
         }
+        $this->clear();
         return $this->merge(array_map('unserialize', array_unique($array)));
+    }
+
+    /**
+     * Add value to beginning of List
+     * @param mixed $value
+     * @return OrderedStructure
+     */
+    public function pushFirst($value)
+    {
+        $first = $this->first;
+        $this->first = new DataItem($value, $first);
+        return $this;
     }
 }

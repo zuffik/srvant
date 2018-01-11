@@ -53,6 +53,13 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      */
     public abstract function push($value);
 
+    /**
+     * Add value to beginning of List
+     * @param mixed $value
+     * @return OrderedStructure
+     */
+    public abstract function pushFirst($value);
+
 
     /**
      * Removes last item from List and returns it.
