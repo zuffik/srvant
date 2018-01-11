@@ -176,4 +176,22 @@ class HashMap extends AbstractStructure
         $this->array = array_map($callable, $this->array, array_keys($this->array));
         return $this;
     }
+
+    /**
+     * @param mixed $value
+     * @param bool $firstOnly
+     * @return Structure
+     */
+    public function removeByValue($value, $firstOnly = true)
+    {
+        foreach ($this->array as $i => $item) {
+            if($item == $value) {
+                unset($this->array[$i]);
+                if($firstOnly) {
+                    break;
+                }
+            }
+        }
+        return $this;
+    }
 }

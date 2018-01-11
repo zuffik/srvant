@@ -211,4 +211,22 @@ class ArrayList extends OrderedStructure
         $this->array = array_merge([$value], $this->array);
         return $this;
     }
+
+    /**
+     * @param mixed $value
+     * @param bool $firstOnly
+     * @return Structure
+     */
+    public function removeByValue($value, $firstOnly = true)
+    {
+        foreach ($this->array as $i => $item) {
+            if($item == $value) {
+                unset($this->array[$i]);
+                if($firstOnly) {
+                    break;
+                }
+            }
+        }
+        return $this;
+    }
 }

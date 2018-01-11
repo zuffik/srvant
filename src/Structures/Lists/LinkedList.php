@@ -329,4 +329,29 @@ class LinkedList extends OrderedStructure
         $this->first = new DataItem($value, $first);
         return $this;
     }
+
+    /**
+     * @param mixed $value
+     * @param bool $firstOnly
+     * @return Structure
+     */
+    public function removeByValue($value, $firstOnly = true)
+    {
+        $item = $this->first;
+        if($item->getData() == $value) {
+            $this->first = $item->getNext();
+            if($firstOnly) {
+                return $this;
+            }
+        }
+        while (!empty($item)) {
+            if(!empty($item->getNext()) && $item->getNext()->getData() == $value) {
+                $item->setNext($item->getNext()->getNext());
+                if($firstOnly) {
+                    break;
+                }
+            }
+        }
+        return $this;
+    }
 }

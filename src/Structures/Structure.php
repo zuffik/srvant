@@ -124,4 +124,11 @@ interface Structure extends Countable, ArrayAccess, JsonSerializable, IArray
      * @return Structure
      */
     public function map($callable);
+
+    /**
+     * @param mixed $value
+     * @param bool $firstOnly
+     * @return Structure
+     */
+    public function removeByValue($value, $firstOnly = true);
 }
