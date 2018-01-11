@@ -12,168 +12,156 @@ use PHPUnit\Framework\TestCase;
 use Exception;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Structures\Maps\HashMap;
+use Zuffik\Srvant\Structures\OrderedStructure;
 use Zuffik\Test\Srvant\Objects\ReturnsObject;
 
 class StructuresTest extends TestCase
 {
     /**
-     * @var ArrayList
+     * @var array
      */
-    private $listOrdered;
+    private $listProto = [];
     /**
-     * @var ArrayList
+     * @var array
      */
-    private $listUnordered;
+    private $mapProto = [];
 
     protected function setUp()
     {
         parent::setUp();
-        $this->listOrdered = new ArrayList([
+        $this->listProto = [
             [
-                'room' => 1,
-                'block' => 'A'
+                'int' => 1,
+                'float' => 8.0,
+                'char' => 'b',
             ],
             [
-                'room' => 2,
-                'block' => 'A'
+                'int' => 3,
+                'float' => 7.7,
+                'char' => 'a',
             ],
             [
-                'room' => 3,
-                'block' => 'A'
+                'int' => 1,
+                'float' => 9.5,
+                'char' => 'b',
+            ],
+        ];
+        $this->mapProto = [
+            'a' => [
+                'int' => 2,
+                'float' => 4.4,
+                'char' => 'f',
+            ],
+            'b' => [
+                'int' => 1,
+                'float' => 7.6,
+                'char' => 'f',
+            ],
+            'c' => [
+                'int' => 3,
+                'float' => 1.8,
+                'char' => 'c',
+            ],
+        ];
+    }
+
+    public function testArrayList()
+    {
+        $this->listTest(\arrayList($this->listProto));
+    }
+
+    /*public function testLinkedList()
+    {
+        $this->listTest(\linkedList($this->listProto));
+    }*/
+
+    /**
+     * @param OrderedStructure $list
+     * @throws Exception
+     */
+    private function listTest(OrderedStructure $list)
+    {
+        $this->assertEquals([
+            'int' => 1,
+            'float' => 8.0,
+            'char' => 'b',
+        ], $list->find('b', ['char']));
+        $this->assertEquals([
+            [
+                'int' => 3,
+                'float' => 7.7,
+                'char' => 'a',
             ],
             [
-                'room' => 4,
-                'block' => 'A'
+                'int' => 1,
+                'float' => 8.0,
+                'char' => 'b',
             ],
             [
-                'room' => 1,
-                'block' => 'B'
+                'int' => 1,
+                'float' => 9.5,
+                'char' => 'b',
+            ],
+        ], $list->copy()->sort(function ($i1, $i2) {
+            return $i1['float'] > $i2['float'];
+        })->toArray());
+        $this->assertEquals([
+            [
+                'int' => 3,
+                'float' => 7.7,
+                'char' => 'a',
             ],
             [
-                'room' => 2,
-                'block' => 'B'
+                'int' => 1,
+                'float' => 8.0,
+                'char' => 'b',
             ],
             [
-                'room' => 3,
-                'block' => 'B'
+                'int' => 1,
+                'float' => 9.5,
+                'char' => 'b',
             ],
-            [
-                'room' => 4,
-                'block' => 'B'
+        ], $list->copy()->multiSort(['int' => 'desc', 'float' => 'asc'])->toArray());
+        $this->assertEquals([
+            'b' => [
+                [
+                    'int' => 1,
+                    'float' => 8.0,
+                    'char' => 'b',
+                ],
+                [
+                    'int' => 1,
+                    'float' => 9.5,
+                    'char' => 'b',
+                ],
+            ],
+            'a' => [
+                [
+                    'int' => 3,
+                    'float' => 7.7,
+                    'char' => 'a',
+                ],
             ]
-        ]);
-        $this->listUnordered = new ArrayList([
+        ], $list->copy()->categorize('char')->toArray());
+        $this->assertEquals([
             [
-                'room' => 1,
-                'block' => 'A'
+                'int' => 3,
+                'float' => 7.7,
+                'char' => 'a',
             ],
             [
-                'room' => 3,
-                'block' => 'A'
+                'int' => 1,
+                'float' => 8.0,
+                'char' => 'b',
             ],
             [
-                'room' => 3,
-                'block' => 'B'
+                'int' => 1,
+                'float' => 9.5,
+                'char' => 'b',
             ],
-            [
-                'room' => 4,
-                'block' => 'A'
-            ],
-            [
-                'room' => 1,
-                'block' => 'B'
-            ],
-            [
-                'room' => 2,
-                'block' => 'B'
-            ],
-            [
-                'room' => 2,
-                'block' => 'A'
-            ],
-            [
-                'room' => 4,
-                'block' => 'B'
-            ]
-        ]);
-    }
-
-    public function testFind()
-    {
-        $obj = new ReturnsObject(5);
-        $obj1 = new ReturnsObject(6);
-        $list = new ArrayList($obj, $obj1);
-        $this->assertEquals($obj, $list->find(5, ['getObj', 'getObject']));
-        $this->assertEquals($obj1, $list->find(6, ['getObj', 'getObject']));
-    }
-
-    public function testSort()
-    {
-        $this->assertEquals($this->listOrdered, $this->listUnordered->multiSort([
-            'block' => 'asc',
-            'room' => 'asc'
-        ]));
-    }
-
-    public function testCategorize()
-    {
-        $categorized = new HashMap([
-            'A' => [
-                [
-                    'room' => 1,
-                    'block' => 'A'
-                ],
-                [
-                    'room' => 3,
-                    'block' => 'A'
-                ],
-                [
-                    'room' => 4,
-                    'block' => 'A'
-                ],
-                [
-                    'room' => 2,
-                    'block' => 'A'
-                ],
-            ],
-            'B' => [
-                [
-                    'room' => 3,
-                    'block' => 'B'
-                ],
-                [
-                    'room' => 1,
-                    'block' => 'B'
-                ],
-                [
-                    'room' => 2,
-                    'block' => 'B'
-                ],
-                [
-                    'room' => 4,
-                    'block' => 'B'
-                ]
-            ]
-        ]);
-        $this->assertEquals($categorized, $this->listUnordered->categorize('block'));
-        $this->assertEquals($categorized, $this->listUnordered->categorize(function ($item) {
-            return $item['block'];
-        }));
-    }
-
-    public function testSwap()
-    {
-        $list = \arrayList([1, 2, 4, 8, 16]);
-        $this->assertEquals(\arrayList([1, 8, 4, 2, 16]), $list->swap(1, 3));
-        $this->expectException(Exception::class);
-        $list->swap(10, 15);
-    }
-
-    public function testCountIf()
-    {
-        $list = \arrayList([1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0]);
-        $this->assertEquals(6, $list->countIf(function($item) {
-            return $item == 0;
+        ], $list->copy()->swap(0, 1)->toArray());
+        $this->assertEquals(2, $list->countIf(function ($item) {
+            return $item['char'] == 'b';
         }));
     }
 
