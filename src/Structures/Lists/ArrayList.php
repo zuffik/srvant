@@ -60,6 +60,7 @@ class ArrayList extends OrderedStructure
     public function push($value)
     {
         $this->array = array_values(array_merge($this->array, func_get_args()));
+        return $this;
     }
 
     /**

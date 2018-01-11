@@ -54,6 +54,7 @@ class StrTest extends TestCase
         $this->assertEquals('world_how_are_you', (string) string($str)->part('_', StringPartition::STR_PART_FROM_FIRST));
         $this->assertEquals('you', (string) string($str)->part('_', StringPartition::STR_PART_FROM_LAST));
         $this->assertEquals('world_how_are', (string) string($str)->part('_', StringPartition::STR_PART_ALL_BETWEEN));
+        $this->assertEquals('`demand_lastupdate`.`updated', (string) string('`demand_lastupdate`.`updated BETWEEN')->part(' ', StringPartition::STR_PART_UNTIL_FIRST));
 
         $this->assertEquals('', (string) string($str)->part(',', StringPartition::STR_PART_UNTIL_LAST));
         $this->assertEquals('', (string) string($str)->part(',', StringPartition::STR_PART_UNTIL_FIRST));
