@@ -158,7 +158,7 @@ class ArrayList extends OrderedStructure
     public function get($key)
     {
         $count = $this->count();
-        if ($key >= $count) {
+        if ($key > $count) {
             throw new Exception("Index out of bounds (requested: $key, limit: $count)");
         }
         return $this->array[$key];
