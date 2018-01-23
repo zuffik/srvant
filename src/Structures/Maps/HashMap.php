@@ -14,7 +14,7 @@ use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Structures\AbstractStructure;
 use Zuffik\Srvant\Structures\Structure;
 
-class HashMap extends AbstractStructure
+class HashMap extends AbstractStructure implements Map
 {
     /**
      * @var array
@@ -193,5 +193,15 @@ class HashMap extends AbstractStructure
             }
         }
         return $this;
+    }
+
+    /**
+     * Returns all keys used in map in ArrayList
+     * @return ArrayList
+     * @throws \Exception
+     */
+    public function getKeys()
+    {
+        return new ArrayList(array_keys($this->array));
     }
 }

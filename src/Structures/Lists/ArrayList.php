@@ -222,6 +222,7 @@ class ArrayList extends OrderedStructure
         foreach ($this->array as $i => $item) {
             if($item == $value) {
                 unset($this->array[$i]);
+                $this->array = array_values($this->array);
                 if($firstOnly) {
                     break;
                 }
