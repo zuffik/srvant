@@ -47,7 +47,10 @@ class Str implements \Countable
      */
     public function __debugInfo()
     {
-        return $this->string;
+        return [
+            'ptr' => spl_object_hash($this),
+            'string' => (string) $this->string
+        ];
     }
 
     /**
@@ -487,7 +490,7 @@ class Str implements \Countable
     public function bind($placeholder, $value, $enclosing = '%')
     {
         $le = $enclosing[0];
-        $re = strlen((string) $enclosing) == 2 ? $enclosing[1] : $le;
+        $re = strlen((string)$enclosing) == 2 ? $enclosing[1] : $le;
         return $this->replace("$le$placeholder$re", $value);
     }
 }
