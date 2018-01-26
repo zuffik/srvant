@@ -25,6 +25,7 @@ use Zuffik\Srvant\Types\StringActions\Partitioning\StringPartition;
  * echo $str; // HELLO-WORLD
  * ```
  * @package Zuffik\Srvant\Types
+ * @property-read int $length
  */
 class Str implements \Countable
 {
@@ -34,6 +35,13 @@ class Str implements \Countable
     private $string;
 
     /**
+     * @var array
+     */
+    private static $dynamicProps = [
+        'length' => 'count'
+    ];
+
+    /**
      * Str constructor.
      * @param string|Str|null $string
      */
@@ -41,6 +49,18 @@ class Str implements \Countable
     {
         $this->string = (string)$string;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function __get($name)
+    {
+        if(empty(self::$dynamicProps[$name])) {
+            throw new \InvalidArgumentException("Str::\$$name does not exists.");
+        }
+        return call_user_func([$this, self::$dynamicProps[$name]]);
+    }
+
 
     /**
      * @inheritDoc
@@ -396,6 +416,15 @@ class Str implements \Countable
      * @see Str::count()
      * @return int
      */
+    public function size()
+    {
+        return $this->count();
+    }
+
+    /**
+     * @see Str::count()
+     * @return int
+     */
     public function length()
     {
         return $this->count();
@@ -492,5 +521,23 @@ class Str implements \Countable
         $le = $enclosing[0];
         $re = strlen((string)$enclosing) == 2 ? $enclosing[1] : $le;
         return $this->replace("$le$placeholder$re", $value);
+    }
+
+    /**
+     * @param int $length
+     * @param string|Str $ellipsis
+     * @param bool $ellipsisInclInLength
+     * @return Str
+     */
+    public function ellipsize($length, $ellipsis = '...', $ellipsisInclInLength = false)
+    {
+        if($ellipsisInclInLength) {
+            $length -= strlen((string) $ellipsis);
+        }
+        if($this->length > $length) {
+            $this->string = $this->callFunc('substr', $this->string, 0, $length);
+            $this->string .= $ellipsis;
+        }
+        return $this;
     }
 }

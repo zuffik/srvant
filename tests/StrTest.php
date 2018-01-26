@@ -44,6 +44,10 @@ class StrTest extends TestCase
         $this->assertContains((string) string('abcd')->randomSubstring(1), 'abcd');
         $this->assertEquals('Hello world', (string) string('Hello %what%')->bind('what', 'world'));
         $this->assertEquals('Hello world', (string) string('Hello {what}')->bind('what', 'world', '{}'));
+        $this->assertEquals('Hello...', (string) string('Hello world!')->ellipsize(5));
+        $this->assertEquals('He...', (string) string('Hello world!')->ellipsize(5, '...', true));
+        $this->assertEquals('Hell', (string) string('Hell')->ellipsize(5));
+        $this->assertEquals(5, string('Hello')->length);
     }
 
     public function testPartitioning()
