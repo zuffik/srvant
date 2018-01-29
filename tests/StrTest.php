@@ -48,6 +48,7 @@ class StrTest extends TestCase
         $this->assertEquals('He...', (string) string('Hello world!')->ellipsize(5, '...', true));
         $this->assertEquals('Hell', (string) string('Hell')->ellipsize(5));
         $this->assertEquals(5, string('Hello')->length);
+        $this->assertEquals('{"string":"hello world"}', json_encode(['string' => string('hello world')]));
     }
 
     public function testPartitioning()

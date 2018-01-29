@@ -10,6 +10,7 @@ namespace Zuffik\Srvant\Types;
 
 
 use Zuffik\Srvant\Formats\Regex;
+use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Types\StringActions\Partitioning\PartitionAction;
 use Zuffik\Srvant\Types\StringActions\Partitioning\StringPartition;
 
@@ -27,7 +28,7 @@ use Zuffik\Srvant\Types\StringActions\Partitioning\StringPartition;
  * @package Zuffik\Srvant\Types
  * @property-read int $length
  */
-class Str implements \Countable
+class Str implements \Countable, \JsonSerializable
 {
     /**
      * @var string
@@ -443,7 +444,7 @@ class Str implements \Countable
 
     /**
      * @param string $delimiter
-     * @return \Zuffik\Srvant\Structures\ArrayList
+     * @return ArrayList
      */
     public function split($delimiter = ' ')
     {
@@ -539,5 +540,17 @@ class Str implements \Countable
             $this->string .= $ellipsis;
         }
         return $this;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return $this->string;
     }
 }
