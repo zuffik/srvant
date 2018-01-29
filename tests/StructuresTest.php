@@ -30,11 +30,11 @@ class StructuresTest extends TestCase
     {
         parent::setUp();
         $this->listProto = [
-            [
+            new HashMap([
                 'int' => 1,
                 'float' => 8.0,
                 'char' => 'b',
-            ],
+            ]),
             [
                 'int' => 3,
                 'float' => 7.7,
@@ -81,22 +81,22 @@ class StructuresTest extends TestCase
      */
     private function listTest(OrderedStructure $list)
     {
-        $this->assertEquals([
+        $this->assertEquals(new HashMap([
             'int' => 1,
             'float' => 8.0,
             'char' => 'b',
-        ], $list->find('b', ['char']));
+        ]), $list->find('b', ['char']));
         $this->assertEquals([
             [
                 'int' => 3,
                 'float' => 7.7,
                 'char' => 'a',
             ],
-            [
+            new HashMap([
                 'int' => 1,
                 'float' => 8.0,
                 'char' => 'b',
-            ],
+            ]),
             [
                 'int' => 1,
                 'float' => 9.5,
@@ -111,11 +111,11 @@ class StructuresTest extends TestCase
                 'float' => 7.7,
                 'char' => 'a',
             ],
-            [
+            new HashMap([
                 'int' => 1,
                 'float' => 8.0,
                 'char' => 'b',
-            ],
+            ]),
             [
                 'int' => 1,
                 'float' => 9.5,
@@ -124,11 +124,11 @@ class StructuresTest extends TestCase
         ], $list->copy()->multiSort(['int' => 'desc', 'float' => 'asc'])->toArray());
         $this->assertEquals([
             'b' => [
-                [
+                new HashMap([
                     'int' => 1,
                     'float' => 8.0,
                     'char' => 'b',
-                ],
+                ]),
                 [
                     'int' => 1,
                     'float' => 9.5,
@@ -149,11 +149,11 @@ class StructuresTest extends TestCase
                 'float' => 7.7,
                 'char' => 'a',
             ],
-            [
+            new HashMap([
                 'int' => 1,
                 'float' => 8.0,
                 'char' => 'b',
-            ],
+            ]),
             [
                 'int' => 1,
                 'float' => 9.5,

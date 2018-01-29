@@ -9,6 +9,7 @@
 namespace Zuffik\Srvant\Helpers;
 
 
+use ArrayAccess;
 use Exception;
 
 class RecursiveGetter
@@ -28,13 +29,13 @@ class RecursiveGetter
         }
         $val = $item;
         foreach ($methodKey as $m) {
-            if (is_object($val) && !method_exists($val, $m)) {
-                throw new Exception('Object of class ' . get_class($val) . ' has no method ' . $m);
-            }
             if (is_array($val) && !array_key_exists($m, $val)) {
                 throw new Exception("Not existing key: $m");
             }
-            $val = is_array($val) ? $val[$m] : call_user_func([$val, $m]);
+            if (is_object($val) && !method_exists($val, $m) && !$val instanceof ArrayAccess) {
+                throw new Exception('Object of class ' . get_class($val) . ' has no method ' . $m);
+            }
+            $val = is_array($val) || $val instanceof ArrayAccess ? $val[$m] : call_user_func([$val, $m]);
         }
         return $val;
     }
