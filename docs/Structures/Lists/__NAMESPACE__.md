@@ -36,6 +36,8 @@
 | `remove` |  |
 | `keyExists` |  |
 | `unify` |  |
+| `pushFirst` | Add value to beginning of List |
+| `removeByValue` |  |
 
 <a name="ArrayList"></a>
 ## ArrayList
@@ -62,6 +64,8 @@
 | `remove` |  |
 | `keyExists` |  |
 | `unify` |  |
+| `pushFirst` | Add value to beginning of List |
+| `removeByValue` |  |
 
 <a name="DataItem"></a>
 ## DataItem

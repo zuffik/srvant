@@ -7,6 +7,7 @@
 
 - [HashMap](__NAMESPACE__.md#HashMap)
 - [KeyValue](__NAMESPACE__.md#KeyValue)
+- [Map](__NAMESPACE__.md#Map)
 
 
 ---
@@ -32,6 +33,9 @@
 | `contains` |  |
 | `unify` |  |
 | `iterator` |  |
+| `map` | Iterates over each item in List and pass it in closure (param: $item, $key, returns: mixed - value that will be replaced in list) |
+| `removeByValue` |  |
+| `getKeys` | Returns all keys used in map in ArrayList |
 
 <a name="KeyValue"></a>
 ## KeyValue
@@ -45,4 +49,15 @@
 | `getKey` |  |
 | `getValue` |  |
 | `toArray` |  |
+
+<a name="Map"></a>
+## Map
+
+**Interface**  : Zuffik\Srvant\Structures\Maps\Map
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getKeys` | Returns all keys used in map in ArrayList |
 

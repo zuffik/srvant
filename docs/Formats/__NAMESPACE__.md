@@ -78,6 +78,7 @@
 | `key` | Return the key of the current element |
 | `valid` | Checks if current position is valid |
 | `rewind` | Rewind the Iterator to the first element |
+| `toArray` | Every object can be converted to array due to high native PHP compatibility. |
 
 <a name="JSON"></a>
 ## JSON

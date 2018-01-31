@@ -65,6 +65,7 @@
 
 | Method | Description |
 |---|---|
+| `__get` |  |
 | `__debugInfo` |  |
 | `replace` |  |
 | `__toString` |  |
@@ -94,6 +95,7 @@
 | `formatNew` | Returns NEW formatted string string |
 | `setValue` | Setter for value |
 | `count` |  |
+| `size` |  |
 | `length` |  |
 | `find` |  |
 | `split` |  |
@@ -103,6 +105,8 @@
 | `randomSubstring` | Random substring from given string |
 | `copy` | Returns new instance with same content |
 | `bind` | Binds string into placeholder (similar as string format but with named placeholders) |
+| `ellipsize` |  |
+| `jsonSerialize` | Specify data which should be serialized to JSON |
 
 <a name="Boolean"></a>
 ## Boolean

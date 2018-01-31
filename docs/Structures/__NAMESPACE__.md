@@ -8,6 +8,7 @@
 - [Maps](./Maps/__NAMESPACE__.md)
     - [HashMap](Maps/__NAMESPACE__.md#HashMap)
     - [KeyValue](Maps/__NAMESPACE__.md#KeyValue)
+    - [Map](Maps/__NAMESPACE__.md#Map)
 - [Lists](./Lists/__NAMESPACE__.md)
     - [LinkedList](Lists/__NAMESPACE__.md#LinkedList)
     - [ArrayList](Lists/__NAMESPACE__.md#ArrayList)
@@ -64,8 +65,8 @@
 
 | Method | Description |
 |---|---|
-| `map` | Iterates over each item in List and pass it in closure (param: $item, $key, returns: mixed - value that will be replaced in list) |
 | `push` | Add value to end of List |
+| `pushFirst` | Add value to beginning of List |
 | `pop` | Removes last item from List and returns it. |
 | `last` | Get last item from array. |
 | `first` | Get first item from array. |
@@ -128,4 +129,6 @@
 | `keyExists` |  |
 | `contains` | Whether value exists in structure |
 | `unify` | Makes structure values unique |
+| `map` | Iterates over each item in List and pass it in closure (param: $item, $key, returns: mixed - value that will be replaced in list) |
+| `removeByValue` |  |
 
