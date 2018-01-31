@@ -9,6 +9,7 @@ use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Structures\Lists\LinkedList;
 use Zuffik\Srvant\Structures\Maps\HashMap;
 use Zuffik\Srvant\Structures\Structure;
+use Zuffik\Srvant\System\Path;
 use Zuffik\Srvant\Types\Boolean;
 use Zuffik\Srvant\Types\Double;
 use Zuffik\Srvant\Types\Integer;
@@ -145,5 +146,16 @@ if(!function_exists('csv')) {
     function csv($data, $delimiter = ';', $enclosure = '"', $escape = '\\', $hasHead = true)
     {
         return new CSV($data, $delimiter, $enclosure, $escape, $hasHead);
+    }
+}
+
+if(!function_exists('path')) {
+    /**
+     * @param Str|string|Path $path
+     * @return Path
+     */
+    function path($path)
+    {
+        return new Path($path);
     }
 }

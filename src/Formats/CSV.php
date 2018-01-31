@@ -12,6 +12,9 @@ namespace Zuffik\Srvant\Formats;
 use Zuffik\Srvant\Convertors\ArrayStructureConverter;
 use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
+use Zuffik\Srvant\System\Files\File;
+use Zuffik\Srvant\System\Files\Stream;
+use Zuffik\Srvant\System\Path;
 
 /**
  * Class CSV. Usage:
@@ -62,6 +65,12 @@ class CSV implements \Iterator, IArray
      */
     public function __construct($data, $delimiter = ';', $enclosure = '"', $escape = '\\', $hasHead = true)
     {
+        if($data instanceof File) {
+            $data->open(Stream::READ);
+            $data = $data->getResource();
+        } else if($data instanceof Path) {
+            $data = file_get_contents((string)$data);
+        }
         if(is_array($data)) {
             $data = ArrayStructureConverter::toStructure($data);
             if(!empty($data->toArray()) > 0 && !$data[0] instanceof ArrayList) {

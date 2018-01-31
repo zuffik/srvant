@@ -14,6 +14,8 @@ use Iterator;
 use Zuffik\Srvant\Convertors\ArrayStructureConverter;
 use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Structure;
+use Zuffik\Srvant\System\Files\File;
+use Zuffik\Srvant\System\Path;
 
 /**
  * Class JSON. Class for working with JSON format.
@@ -32,6 +34,13 @@ class JSON implements ArrayAccess, Iterator, IArray
      */
     public function __construct($json)
     {
+        if(is_resource($json)) {
+            $json = stream_get_contents($json);
+        } else if($json instanceof File) {
+            $json = $json->read();
+        } else if($json instanceof Path) {
+            $json = file_get_contents((string)$json);
+        }
         if(is_string($json)) {
             $decoded = json_decode($json, true);
             if($decoded === null) {
