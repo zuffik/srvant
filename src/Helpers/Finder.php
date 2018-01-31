@@ -17,20 +17,30 @@ class Finder
      * @param mixed $search
      * @param string|string[] $method
      * @param bool $strict whether use == or ===
+     * @param bool $stopOnFirst
      * @return mixed
      * @throws \Exception
      */
-    public static function find($iterable, $search, $method = null, $strict = false) {
+    public static function find($iterable, $search, $method = null, $strict = false, $stopOnFirst = false) {
+        $result = $stopOnFirst ? null : [];
         if (!empty($method)) {
             foreach ($iterable as $item) {
                 $val = RecursiveGetter::get($item, $method);
                 if ($strict) {
                     if ($val === $search) {
-                        return $item;
+                        if($stopOnFirst) {
+                            return $item;
+                        } else {
+                            $result[] = $item;
+                        }
                     }
                 } else {
                     if ($val == $search) {
-                        return $item;
+                        if($stopOnFirst) {
+                            return $item;
+                        } else {
+                            $result[] = $item;
+                        }
                     }
                 }
             }
@@ -38,15 +48,23 @@ class Finder
             foreach ($iterable as $item) {
                 if ($strict) {
                     if ($item === $search) {
-                        return $item;
+                        if($stopOnFirst) {
+                            return $item;
+                        } else {
+                            $result[] = $item;
+                        }
                     }
                 } else {
                     if ($item == $search) {
-                        return $item;
+                        if($stopOnFirst) {
+                            return $item;
+                        } else {
+                            $result[] = $item;
+                        }
                     }
                 }
             }
         }
-        return null;
+        return $result;
     }
 }

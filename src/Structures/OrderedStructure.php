@@ -124,6 +124,19 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
     }
 
     /**
+     * Recursively searches for items in List. If no item was found, empty List is returned.
+     * @param mixed $search a value to search
+     * @param callable|null $method a method to call on iterated value to compare with $search
+     * @param bool $strict whether to use == or ===
+     * @return OrderedStructure a COPY of itself
+     * @throws Exception
+     */
+    public function findAll($search, $method = null, $strict = false)
+    {
+        return new static(Finder::find($this, $search, $method, $strict, true));
+    }
+
+    /**
      * Sort by multiple criteria
      * (assoc. array with key representing what will be compared and
      * value representing in which order it will be moved)
