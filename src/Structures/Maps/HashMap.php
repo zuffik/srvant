@@ -75,7 +75,11 @@ class HashMap extends AbstractStructure implements Map
      */
     public function filter($callable)
     {
-        $this->array = array_filter($this->array, $callable, ARRAY_FILTER_USE_BOTH);
+        foreach ($this->array as $key => $value) {
+            if(!call_user_func($callable, $value, $key)) {
+                unset($this->array[$key]);
+            }
+        }
         return $this;
     }
 
@@ -174,7 +178,9 @@ class HashMap extends AbstractStructure implements Map
      */
     public function map($callable)
     {
-        $this->array = array_map($callable, $this->array, array_keys($this->array));
+        foreach ($this->array as $key => $value) {
+            $this->array[$key] = call_user_func($callable, $value, $key);
+        }
         return $this;
     }
 

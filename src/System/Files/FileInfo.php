@@ -35,4 +35,12 @@ abstract class FileInfo
     {
         return file_exists((string) $this->path);
     }
+
+    /**
+     * @return Path
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
 }
