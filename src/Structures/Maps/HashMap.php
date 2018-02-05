@@ -12,6 +12,7 @@ namespace Zuffik\Srvant\Structures\Maps;
 use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Structures\AbstractStructure;
+use Zuffik\Srvant\Structures\OrderedStructure;
 use Zuffik\Srvant\Structures\Structure;
 
 class HashMap extends AbstractStructure implements Map
@@ -203,5 +204,20 @@ class HashMap extends AbstractStructure implements Map
     public function getKeys()
     {
         return new ArrayList(array_keys($this->array));
+    }
+
+    /**
+     * Keeps only elements with keys obtained in $keys
+     * @param array|OrderedStructure $keys
+     * @return HashMap
+     * @throws \Exception
+     */
+    public function allowOnly($keys)
+    {
+        $keys = new ArrayList($keys);
+        $this->filter(function($item, $key) use($keys) {
+            return $keys->contains($key);
+        });
+        return $this;
     }
 }

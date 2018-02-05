@@ -21,7 +21,7 @@ class Finder
      * @return mixed
      * @throws \Exception
      */
-    public static function find($iterable, $search, $method = null, $strict = false, $stopOnFirst = false) {
+    public static function find($iterable, $search, $method = null, $strict = false, $stopOnFirst = true) {
         $result = $stopOnFirst ? null : [];
         if (!empty($method)) {
             foreach ($iterable as $item) {

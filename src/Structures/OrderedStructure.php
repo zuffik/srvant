@@ -120,7 +120,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      */
     public function find($search, $method = null, $strict = false)
     {
-        return Finder::find($this, $search, $method, $strict);
+        return Finder::find($this, $search, $method, $strict, true);
     }
 
     /**
@@ -133,7 +133,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      */
     public function findAll($search, $method = null, $strict = false)
     {
-        return new static(Finder::find($this, $search, $method, $strict, true));
+        return new static(Finder::find($this, $search, $method, $strict, false));
     }
 
     /**
@@ -261,6 +261,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      * ```
      * @param callable|callable[]|string|string[] $criteria
      * @return HashMap
+     * @throws Exception
      */
     public function categorize($criteria)
     {
