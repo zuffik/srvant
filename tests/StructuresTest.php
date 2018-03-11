@@ -86,6 +86,7 @@ class StructuresTest extends TestCase
             'float' => 8.0,
             'char' => 'b',
         ]), $list->find('b', ['char']));
+        $this->assertEquals(0, $list->indexOf('b', ['char']));
         $this->assertEquals([
             [
                 'int' => 3,

@@ -421,4 +421,17 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
             }
         }
     }
+
+    /**
+     * Searches for index of given element
+     * @param mixed $search
+     * @param string|string[] $method
+     * @param bool $strict
+     * @return int
+     * @throws Exception
+     */
+    public function indexOf($search, $method, $strict = false)
+    {
+        return Finder::find($this, $search, $method, $strict, true, true);
+    }
 }
