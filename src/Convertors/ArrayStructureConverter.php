@@ -9,6 +9,7 @@
 namespace Zuffik\Srvant\Convertors;
 
 
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Structures\Maps\HashMap;
 use Zuffik\Srvant\Structures\Structure;
@@ -29,10 +30,10 @@ class ArrayStructureConverter
      */
     public static function toArray($structure, $result = [])
     {
-        if($structure instanceof Structure) {
+        if ($structure instanceof Structure) {
             $structure = $structure->toArray();
         }
-        if(is_scalar($structure) || empty($structure)) {
+        if (is_scalar($structure) || empty($structure)) {
             return $structure;
         }
         foreach ($structure as $key => $value) {
@@ -45,15 +46,16 @@ class ArrayStructureConverter
      * Converts array to structure. Also checks for continuous indexes to determine if it is Map or List
      * @param array $array
      * @return Structure
+     * @throws InvalidArgumentException
      */
     public static function toStructure($array)
     {
-        if(!$array) {
+        if (!$array) {
             return null;
         }
         $serializable = array_keys($array) !== range(0, count($array) - 1) ? new HashMap() : new ArrayList();
         foreach ($array as $key => $value) {
-            if($serializable instanceof HashMap) {
+            if ($serializable instanceof HashMap) {
                 $serializable->set($key, is_array($value) ? self::toStructure($value) : $value);
             } else {
                 $serializable->push(is_array($value) ? self::toStructure($value) : $value);

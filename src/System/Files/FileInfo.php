@@ -33,7 +33,7 @@ abstract class FileInfo
      */
     public function exists()
     {
-        return file_exists((string) $this->path);
+        return file_exists((string)$this->path);
     }
 
     /**

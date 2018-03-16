@@ -9,6 +9,7 @@
 namespace Zuffik\Srvant\Formats;
 
 
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Structures\Maps\HashMap;
 
 /**
@@ -37,10 +38,11 @@ class URL
     /**
      * URL constructor.
      * @param string $url
+     * @throws InvalidArgumentException
      */
     public function __construct($url = '')
     {
-        if($url != '') {
+        if ($url != '') {
             $this->parseUrl($url);
         }
     }
@@ -48,11 +50,12 @@ class URL
     /**
      * Parses given url using self::PATTERN regex
      * @param $url
+     * @throws InvalidArgumentException
      */
     public function parseUrl($url)
     {
         preg_match(self::PATTERN, $url, $m);
-        if(empty($m)) {
+        if (empty($m)) {
             $this->fullUrl = $url;
             $this->queryParams = new HashMap();
         } else {
@@ -197,10 +200,11 @@ class URL
      * Setter for query parameters
      * @param HashMap $queryParams
      * @return URL
+     * @throws InvalidArgumentException
      */
     public function setQueryParams($queryParams)
     {
-        if(is_string($queryParams)) {
+        if (is_string($queryParams)) {
             parse_str($queryParams, $params);
         } else {
             $params = $queryParams;

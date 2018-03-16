@@ -9,28 +9,34 @@
 namespace Zuffik\Srvant\System\Files;
 
 
+use Zuffik\Srvant\Exceptions\ErrorException;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Types\Str;
 
 class File extends FileInfo
 {
     /**
+     * File handle
      * @var resource|null
      */
     protected $resource = null;
 
     /**
-     * @throws \Exception
+     * Checks whether file exists
+     * @throws InvalidArgumentException
      */
     protected function verifyAction()
     {
         if (!$this->exists()) {
-            throw new \Exception("File {$this->path} does not exists.");
+            throw new InvalidArgumentException("File {$this->path} does not exists.");
         }
     }
 
     /**
+     * Opens file handle
      * @param string|Str $stream
-     * @throws \Exception
+     * @throws InvalidArgumentException
+     * @throws ErrorException
      */
     public function open($stream)
     {
@@ -40,7 +46,7 @@ class File extends FileInfo
     }
 
     /**
-     * @return null|resource
+     * @return null|resource file handle
      */
     public function getResource()
     {
@@ -48,13 +54,16 @@ class File extends FileInfo
     }
 
     /**
-     * @return bool
+     * @return bool whether file handle is open
      */
     public function isOpen()
     {
         return !empty($this->resource);
     }
 
+    /**
+     * Closes file handle
+     */
     public function close()
     {
         if ($this->isOpen()) {
@@ -64,6 +73,7 @@ class File extends FileInfo
     }
 
     /**
+     * Replaces file handle if exists
      * @param resource $resource
      */
     public function setResource($resource)
@@ -72,39 +82,42 @@ class File extends FileInfo
     }
 
     /**
+     * Reads from file (file may not be open)
      * @return bool|string
-     * @throws \Exception
+     * @throws ErrorException
      */
     public function read()
     {
         $result = file_get_contents((string)$this->path);
-        if($result === false) {
-            throw new \Exception("Failed to read {$this->path} file.");
+        if ($result === false) {
+            throw new ErrorException("Failed to read {$this->path} file." . error_get_last()['message']);
         }
         return $result;
     }
 
     /**
+     * Writes to file (file may not be open)
      * @param string $data
-     * @throws \Exception
+     * @throws ErrorException
      */
     public function write($data)
     {
         $result = file_put_contents((string)$this->path, $data);
-        if($result === false) {
-            throw new \Exception("Failed to write to {$this->path} file.");
+        if ($result === false) {
+            throw new ErrorException("Failed to write to {$this->path} file." . error_get_last()['message']);
         }
     }
 
     /**
+     * Appends to file (may not be open)
      * @param string $data
-     * @throws \Exception
+     * @throws ErrorException
      */
     public function append($data)
     {
         $result = file_put_contents((string)$this->path, file_get_contents((string)$this->path) . $data);
-        if($result === false) {
-            throw new \Exception("Failed to append to {$this->path} file.");
+        if ($result === false) {
+            throw new ErrorException("Failed to append to {$this->path} file." . error_get_last()['message']);
         }
     }
 }

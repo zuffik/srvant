@@ -8,9 +8,8 @@
 
 namespace Zuffik\Test\Srvant;
 
-use Zuffik\Srvant\Generators\Random\Distributions\CombinedDistribution;
-use Zuffik\Srvant\Generators\Random\Distributions\Distribution;
 use PHPUnit\Framework\TestCase;
+use Zuffik\Srvant\Generators\Random\Distributions\CombinedDistribution;
 use Zuffik\Srvant\Generators\Random\Distributions\ExponentialDistribution;
 use Zuffik\Srvant\Generators\Random\Distributions\NormalDistribution;
 use Zuffik\Srvant\Generators\Random\Distributions\TriangularDistribution;

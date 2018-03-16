@@ -8,8 +8,6 @@
 
 namespace Zuffik\Srvant\Generators\Random;
 
-use Zuffik\Srvant\Types\Double;
-use Zuffik\Srvant\Types\Integer;
 use Zuffik\Srvant\Types\Str;
 
 /**
@@ -43,6 +41,7 @@ class Random
      * @param int $length
      * @param string|Str $characters
      * @return \Zuffik\Srvant\Types\Str
+     * @throws \Zuffik\Srvant\Exceptions\ErrorException
      */
     public function string($length = 10, $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
     {

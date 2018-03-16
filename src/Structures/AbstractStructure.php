@@ -9,8 +9,6 @@
 namespace Zuffik\Srvant\Structures;
 
 
-use Zuffik\Srvant\Structures\Structure;
-
 abstract class AbstractStructure implements Structure
 {
     /**

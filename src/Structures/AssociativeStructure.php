@@ -8,10 +8,6 @@
 
 namespace Zuffik\Srvant\Structures;
 
-
-use Exception;
-use Zuffik\Srvant\Structures\AbstractStructure;
-
 abstract class AssociativeStructure extends AbstractStructure
 {
     /**

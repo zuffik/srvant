@@ -8,9 +8,9 @@
 
 namespace Zuffik\Test\Srvant\Files;
 
+use PHPUnit\Framework\TestCase;
 use Zuffik\Srvant\System\Files\Directory;
 use Zuffik\Srvant\System\Files\File;
-use PHPUnit\Framework\TestCase;
 use Zuffik\Srvant\System\Files\Stream;
 
 class FileInfoTest extends TestCase

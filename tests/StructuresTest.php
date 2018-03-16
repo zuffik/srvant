@@ -9,11 +9,8 @@
 namespace Zuffik\Test\Srvant;
 
 use PHPUnit\Framework\TestCase;
-use Exception;
-use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Structures\Maps\HashMap;
 use Zuffik\Srvant\Structures\OrderedStructure;
-use Zuffik\Test\Srvant\Objects\ReturnsObject;
 
 class StructuresTest extends TestCase
 {
@@ -26,6 +23,9 @@ class StructuresTest extends TestCase
      */
     private $mapProto = [];
 
+    /**
+     * @throws \Zuffik\Srvant\Exceptions\InvalidArgumentException
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -65,6 +65,9 @@ class StructuresTest extends TestCase
         ];
     }
 
+    /**
+     * @throws \Zuffik\Srvant\Exceptions\InvalidArgumentException
+     */
     public function testArrayList()
     {
         $this->listTest(\arrayList($this->listProto));
@@ -77,7 +80,7 @@ class StructuresTest extends TestCase
 
     /**
      * @param OrderedStructure $list
-     * @throws Exception
+     * @throws \Zuffik\Srvant\Exceptions\InvalidArgumentException
      */
     private function listTest(OrderedStructure $list)
     {
@@ -166,6 +169,9 @@ class StructuresTest extends TestCase
         }));
     }
 
+    /**
+     * @throws \Zuffik\Srvant\Exceptions\InvalidArgumentException
+     */
     public function testJSON()
     {
         $this->assertEquals(json_encode(['foo' => 'bar']), json_encode(\hashMap(['foo' => 'bar'])));

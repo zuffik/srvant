@@ -13,6 +13,7 @@
         - [TriangularDistribution](Random/Distributions/__NAMESPACE__.md#TriangularDistribution)
         - [ExponentialDistribution](Random/Distributions/__NAMESPACE__.md#ExponentialDistribution)
         - [UniformDistribution](Random/Distributions/__NAMESPACE__.md#UniformDistribution)
+    - [Distributions](Random/__NAMESPACE__.md#Distributions)
     - [Random](Random/__NAMESPACE__.md#Random)
 
 

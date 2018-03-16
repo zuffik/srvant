@@ -9,7 +9,6 @@
 namespace Zuffik\Srvant\Structures\Maps;
 
 
-use Zuffik\Srvant\Serializable;
 use Zuffik\Srvant\Structures\IArray;
 
 class KeyValue implements IArray

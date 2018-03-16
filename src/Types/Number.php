@@ -8,6 +8,8 @@
 
 namespace Zuffik\Srvant\Types;
 
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
+
 /**
  * Any number wrapper
  * @package Zuffik\Srvant\Types
@@ -21,7 +23,7 @@ abstract class Number
 
     /**
      * Number constructor.
-     * @param float|int|Number $value
+     * @param float|int|\Zuffik\Srvant\Types\Number $value
      */
     public function __construct($value = 0)
     {
@@ -33,7 +35,8 @@ abstract class Number
 
     /**
      * @param int|float $value
-     * @return Number
+     * @return \Zuffik\Srvant\Types\Double|\Zuffik\Srvant\Types\Integer
+     * @throws InvalidArgumentException
      */
     public static function create($value)
     {
@@ -42,7 +45,7 @@ abstract class Number
 
     /**
      * @param float|int $value
-     * @return Number
+     * @return \Zuffik\Srvant\Types\Number
      */
     public function setValue($value)
     {
@@ -68,7 +71,7 @@ abstract class Number
 
     /**
      * @param Number|int|float $number
-     * @return Number
+     * @return \Zuffik\Srvant\Types\Number
      */
     public function add($number)
     {
@@ -78,7 +81,7 @@ abstract class Number
 
     /**
      * @param Number|int|float $number
-     * @return Number
+     * @return \Zuffik\Srvant\Types\Number
      */
     public function subtract($number)
     {
@@ -88,7 +91,7 @@ abstract class Number
 
     /**
      * @param Number|int|float $number
-     * @return Number
+     * @return \Zuffik\Srvant\Types\Number
      */
     public function multiply($number)
     {
@@ -97,8 +100,8 @@ abstract class Number
     }
 
     /**
-     * @param Number|int|float $number
-     * @return Number
+     * @param \Zuffik\Srvant\Types\Number|int|float $number
+     * @return \Zuffik\Srvant\Types\Number
      */
     public function divide($number)
     {
@@ -107,7 +110,7 @@ abstract class Number
     }
 
     /**
-     * @return Number
+     * @return \Zuffik\Srvant\Types\Number
      */
     public function abs()
     {
@@ -118,13 +121,13 @@ abstract class Number
 
     /**
      * @param int $decimals
-     * @param string $dec_point
-     * @param string $thousands_sep
+     * @param string $decimalDelimiter
+     * @param string $thousandsDelimiter
      * @return string
      */
-    public function numberFormat($decimals = 0, $dec_point = ".", $thousands_sep = ",")
+    public function numberFormat($decimals = 0, $decimalDelimiter = ".", $thousandsDelimiter = ",")
     {
-        return number_format($this->value, $decimals, $dec_point, $thousands_sep);
+        return number_format($this->value, $decimals, $decimalDelimiter, $thousandsDelimiter);
     }
 
 

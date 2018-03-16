@@ -8,6 +8,8 @@
 
 namespace Zuffik\Srvant\Types;
 
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
+
 /**
  * Integer wrapper
  * @package Zuffik\Srvant\Types
@@ -18,12 +20,13 @@ class Integer extends Number
      * Integer constructor.
      * @param int $value
      * @param bool $strict
+     * @throws InvalidArgumentException
      */
     public function __construct($value = 0, $strict = false)
     {
         parent::__construct($value);
-        if($strict && (is_float($this->value) || !is_numeric($this->value))) {
-            throw new \InvalidArgumentException('Integer::__construct() accepts only integers and ' . gettype($this->value) . ' given.');
+        if ($strict && (is_float($this->value) || !is_numeric($this->value))) {
+            throw new InvalidArgumentException('Integer::__construct() accepts only integers and ' . gettype($this->value) . ' given.');
         }
     }
 
@@ -36,26 +39,26 @@ class Integer extends Number
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function __toString()
     {
-        return (string) intval(parent::__toString());
+        return (string)intval(parent::__toString());
     }
 
     /**
-     * @param int|Integer $number
-     * @return Number
+     * @param int|\Zuffik\Srvant\Types\Integer $number
+     * @return \Zuffik\Srvant\Types\Number
      */
     public function divide($number)
     {
-        $this->value = intval(floor(parent::divide($number)));
+        $this->value = intval(floor(parent::divide($number)->getValue()));
         return $this;
     }
 
     /**
      * @param int|Integer $number
-     * @return Number
+     * @return \Zuffik\Srvant\Types\Number
      */
     public function mod($number)
     {

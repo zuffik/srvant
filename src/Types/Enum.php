@@ -9,9 +9,9 @@
 namespace Zuffik\Srvant\Types;
 
 
-use Exception;
-use Zuffik\Srvant\Serializable;
 use ReflectionClass;
+use Zuffik\Srvant\Exceptions\ErrorException;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Maps\HashMap;
 
@@ -40,33 +40,44 @@ abstract class Enum implements IArray
     /**
      * Enum constructor.
      * @param $value
-     * @throws Exception
+     * @throws ErrorException
+     * @throws InvalidArgumentException
      */
     public function __construct($value)
     {
-        $this->constants = new HashMap((new ReflectionClass($this))->getConstants());
+        try {
+            $this->constants = new HashMap((new ReflectionClass($this))->getConstants());
+        } catch (\ReflectionException $e) {
+            throw new ErrorException($e->getMessage(), $e->getCode(), $e);
+        }
         $this->setValue($value);
     }
 
     /**
      * Return all values
      * @return HashMap
+     * @throws ErrorException
+     * @throws InvalidArgumentException
      */
     public static function getValues()
     {
-        return new HashMap((new ReflectionClass(self::class))->getConstants());
+        try {
+            return new HashMap((new ReflectionClass(self::class))->getConstants());
+        } catch (\ReflectionException $e) {
+            throw new ErrorException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     /**
      * Setter for value
      * @param mixed $value
      * @return Enum
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function setValue($value)
     {
-        if(!in_array($value, $this->constants->toArray())) {
-            throw new Exception('Could not read ' . $value . ' constant of enum ' . get_class($this));
+        if (!in_array($value, $this->constants->toArray())) {
+            throw new InvalidArgumentException('Could not read ' . $value . ' constant of enum ' . get_class($this));
         }
         $this->value = $value;
         return $this;
@@ -94,7 +105,8 @@ abstract class Enum implements IArray
      * If $value can be passed in enumerator returns it. Otherwise it throws an exception.
      * @param $value
      * @return mixed
-     * @throws Exception
+     * @throws ErrorException
+     * @throws InvalidArgumentException
      */
     public static function verify($value)
     {

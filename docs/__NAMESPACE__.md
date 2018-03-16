@@ -52,6 +52,10 @@
 - [Helpers](./Helpers/__NAMESPACE__.md)
     - [Finder](Helpers/__NAMESPACE__.md#Finder)
     - [RecursiveGetter](Helpers/__NAMESPACE__.md#RecursiveGetter)
+- [Exceptions](./Exceptions/__NAMESPACE__.md)
+    - [Exception](Exceptions/__NAMESPACE__.md#Exception)
+    - [InvalidArgumentException](Exceptions/__NAMESPACE__.md#InvalidArgumentException)
+    - [ErrorException](Exceptions/__NAMESPACE__.md#ErrorException)
 - [Convertors](./Convertors/__NAMESPACE__.md)
     - [FromScalar](Convertors/__NAMESPACE__.md#FromScalar)
     - [ArrayStructureConverter](Convertors/__NAMESPACE__.md#ArrayStructureConverter)
@@ -64,6 +68,7 @@
             - [TriangularDistribution](Generators/Random/Distributions/__NAMESPACE__.md#TriangularDistribution)
             - [ExponentialDistribution](Generators/Random/Distributions/__NAMESPACE__.md#ExponentialDistribution)
             - [UniformDistribution](Generators/Random/Distributions/__NAMESPACE__.md#UniformDistribution)
+        - [Distributions](Generators/Random/__NAMESPACE__.md#Distributions)
         - [Random](Generators/Random/__NAMESPACE__.md#Random)
 
 

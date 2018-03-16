@@ -75,6 +75,7 @@
 | `reverse` | Reverses List. |
 | `diff` | Computes the difference of arrays |
 | `find` | Recursively searches for item in List. If no item was found, null is returned. |
+| `findAll` | Recursively searches for items in List. If no item was found, empty List is returned. |
 | `multiSort` | Sort by multiple criteria (assoc. array with key representing what will be compared and |
 | `current` |  |
 | `next` |  |
@@ -94,6 +95,7 @@
 | `contains` |  |
 | `__sleep` |  |
 | `__wakeup` |  |
+| `indexOf` | Searches for index of given element |
 
 <a name="IArray"></a>
 ## IArray

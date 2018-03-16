@@ -12,6 +12,8 @@ namespace Zuffik\Srvant\Formats;
 use ArrayAccess;
 use Iterator;
 use Zuffik\Srvant\Convertors\ArrayStructureConverter;
+use Zuffik\Srvant\Exceptions\ErrorException;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Structure;
 use Zuffik\Srvant\System\Files\File;
@@ -30,29 +32,30 @@ class JSON implements ArrayAccess, Iterator, IArray
      * JSON constructor. Param can be any of json-compatible types (array types, string or JSON class itself).
      * Also checks for it validity.
      * @param array|Structure|string|JSON $json
-     * @throws \Exception
+     * @throws InvalidArgumentException
+     * @throws ErrorException
      */
     public function __construct($json)
     {
-        if(is_resource($json)) {
+        if (is_resource($json)) {
             $json = stream_get_contents($json);
-        } else if($json instanceof File) {
+        } else if ($json instanceof File) {
             $json = $json->read();
-        } else if($json instanceof Path) {
+        } else if ($json instanceof Path) {
             $json = file_get_contents((string)$json);
         }
-        if(is_string($json)) {
+        if (is_string($json)) {
             $decoded = json_decode($json, true);
-            if($decoded === null) {
+            if ($decoded === null) {
                 $error = json_last_error_msg();
-                throw new \InvalidArgumentException("Empty or corrupted JSON string: $error ($json)");
+                throw new InvalidArgumentException("Empty or corrupted JSON string: $error ($json)");
             }
             $this->array = ArrayStructureConverter::toStructure($decoded);
-        } else if($json instanceof Structure) {
+        } else if ($json instanceof Structure) {
             $this->array = $json;
-        } else if($json instanceof JSON) {
+        } else if ($json instanceof JSON) {
             $this->array = $json->array;
-        } else if(!empty($json)) {
+        } else if (!empty($json)) {
             $this->array = ArrayStructureConverter::toStructure($json);
         } else {
             $this->array = [];

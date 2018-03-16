@@ -9,6 +9,8 @@
 namespace Zuffik\Srvant\Types;
 
 
+use Zuffik\Srvant\Exceptions\ErrorException;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Formats\Regex;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Types\StringActions\Partitioning\PartitionAction;
@@ -56,8 +58,8 @@ class Str implements \Countable, \JsonSerializable
      */
     public function __get($name)
     {
-        if(empty(self::$dynamicProps[$name])) {
-            throw new \InvalidArgumentException("Str::\$$name does not exists.");
+        if (empty(self::$dynamicProps[$name])) {
+            throw new InvalidArgumentException("Str::\$$name does not exists.");
         }
         return call_user_func([$this, self::$dynamicProps[$name]]);
     }
@@ -70,7 +72,7 @@ class Str implements \Countable, \JsonSerializable
     {
         return [
             'ptr' => spl_object_hash($this),
-            'string' => (string) $this->string
+            'string' => (string)$this->string
         ];
     }
 
@@ -78,10 +80,16 @@ class Str implements \Countable, \JsonSerializable
      * @param string $name
      * @param array ...$args
      * @return mixed
+     * @throws ErrorException
      */
     private function callFunc($name, ...$args)
     {
-        return function_exists("mb_$name") ? call_user_func_array("mb_$name", $args) : call_user_func_array($name, $args);
+        $result = @function_exists("mb_$name") ? call_user_func_array("mb_$name", $args) : call_user_func_array($name, $args);
+        $err = error_get_last();
+        if (!empty($err) && $err['type'] & error_reporting()) {
+            throw new ErrorException("Function $name returned error {$err['message']}");
+        }
+        return $result;
     }
 
     /**
@@ -89,6 +97,7 @@ class Str implements \Countable, \JsonSerializable
      * @param string|Str|Regex $search
      * @param string|Str $replace
      * @return Str
+     * @throws ErrorException
      */
     public function replace($search, $replace)
     {
@@ -110,6 +119,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see strtoupper()
      * @return Str
+     * @throws ErrorException
      */
     public function toUppercase()
     {
@@ -120,6 +130,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see strtolower()
      * @return Str
+     * @throws ErrorException
      */
     public function toLowercase()
     {
@@ -130,6 +141,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see Str::toUppercase()
      * @return Str
+     * @throws ErrorException
      */
     public function toUpper()
     {
@@ -139,6 +151,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see Str::toLowercase()
      * @return Str
+     * @throws ErrorException
      */
     public function toLower()
     {
@@ -148,6 +161,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see ucfirst()
      * @return Str
+     * @throws ErrorException
      */
     public function capitalize()
     {
@@ -158,6 +172,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see lcfirst()
      * @return Str
+     * @throws ErrorException
      */
     public function lowerFirst()
     {
@@ -168,6 +183,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see ucwords()
      * @return Str
+     * @throws ErrorException
      */
     public function capitalizeAll()
     {
@@ -180,6 +196,7 @@ class Str implements \Countable, \JsonSerializable
      * @param int $start
      * @param int $length
      * @return Str
+     * @throws ErrorException
      */
     public function substring($start = 0, $length = null)
     {
@@ -191,6 +208,7 @@ class Str implements \Countable, \JsonSerializable
      * @see strpos()
      * @param Str|string $string
      * @return bool
+     * @throws ErrorException
      */
     public function contains($string)
     {
@@ -199,12 +217,12 @@ class Str implements \Countable, \JsonSerializable
 
     /**
      * @see trim()
-     * @param string $charlist
+     * @param string $charList
      * @return Str
      */
-    public function trim($charlist = " \t\n\r\0\x0B")
+    public function trim($charList = " \t\n\r\0\x0B")
     {
-        $this->string = trim($this->string, $charlist);
+        $this->string = trim($this->string, $charList);
         return $this;
     }
 
@@ -360,7 +378,7 @@ class Str implements \Countable, \JsonSerializable
      * @see sprintf()
      * @param array $args
      * @return Str
-     * @throws \Exception
+     * @throws InvalidArgumentException
      */
     public function format(...$args)
     {
@@ -368,7 +386,7 @@ class Str implements \Countable, \JsonSerializable
         $expected = count($args);
         $real = substr_count($this->string, '%s');
         if ($expected != $real) {
-            throw new \Exception("Method Str::format expects $expected exactly arguments. $real given.");
+            throw new InvalidArgumentException("Method Str::format expects $expected exactly arguments. $real given.");
         }
         $this->string = vsprintf($this->string, $args);
         return $this;
@@ -379,8 +397,8 @@ class Str implements \Countable, \JsonSerializable
      * @see sprintf()
      * @param array $args
      * @return Str
-     * @throws \Exception
      * @deprecated use copy & format
+     * @throws InvalidArgumentException
      */
     public function formatNew(...$args)
     {
@@ -407,6 +425,7 @@ class Str implements \Countable, \JsonSerializable
      * <p>
      * The return value is cast to an integer.
      * @since 5.1.0
+     * @throws ErrorException
      */
     public function count()
     {
@@ -416,6 +435,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see Str::count()
      * @return int
+     * @throws ErrorException
      */
     public function size()
     {
@@ -425,6 +445,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @see Str::count()
      * @return int
+     * @throws ErrorException
      */
     public function length()
     {
@@ -435,6 +456,7 @@ class Str implements \Countable, \JsonSerializable
      * @see strpos()
      * @param Str|string $subString
      * @return int
+     * @throws ErrorException
      */
     public function find($subString)
     {
@@ -445,6 +467,7 @@ class Str implements \Countable, \JsonSerializable
     /**
      * @param string $delimiter
      * @return ArrayList
+     * @throws InvalidArgumentException
      */
     public function split($delimiter = ' ')
     {
@@ -457,7 +480,8 @@ class Str implements \Countable, \JsonSerializable
      * @param Str|string $character
      * @param string $type
      * @return Str
-     * @throws \Exception
+     * @throws ErrorException
+     * @throws InvalidArgumentException
      */
     public function part($character, $type)
     {
@@ -471,6 +495,7 @@ class Str implements \Countable, \JsonSerializable
      * @see substr_count()
      * @param string|Str $char
      * @return int
+     * @throws ErrorException
      */
     public function substrCount($char)
     {
@@ -491,12 +516,13 @@ class Str implements \Countable, \JsonSerializable
      * Random substring from given string
      * @param int $length
      * @return Str
-     * @throws \Exception
+     * @throws InvalidArgumentException
+     * @throws ErrorException
      */
     public function randomSubstring($length = 1)
     {
         if ($length > $this->length()) {
-            throw new \Exception("Str::randomSubstring length is larger than length of string ($length/{$this->length()})");
+            throw new InvalidArgumentException("Str::randomSubstring length is larger than length of string ($length/{$this->length()})");
         }
         return string($this)->substring(rand(0, $this->length() - $length), $length);
     }
@@ -516,6 +542,7 @@ class Str implements \Countable, \JsonSerializable
      * @param string|Str $value
      * @param string|Str $enclosing char or 2 chars for left and right enclosing
      * @return Str
+     * @throws ErrorException
      */
     public function bind($placeholder, $value, $enclosing = '%')
     {
@@ -529,13 +556,14 @@ class Str implements \Countable, \JsonSerializable
      * @param string|Str $ellipsis
      * @param bool $ellipsisInclInLength
      * @return Str
+     * @throws ErrorException
      */
     public function ellipsize($length, $ellipsis = '...', $ellipsisInclInLength = false)
     {
-        if($ellipsisInclInLength) {
-            $length -= strlen((string) $ellipsis);
+        if ($ellipsisInclInLength) {
+            $length -= strlen((string)$ellipsis);
         }
-        if($this->length > $length) {
+        if ($this->length > $length) {
             $this->string = $this->callFunc('substr', $this->string, 0, $length);
             $this->string .= $ellipsis;
         }

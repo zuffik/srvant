@@ -1,10 +1,14 @@
 <?php
 
-use Zuffik\Srvant\Generators\Random\Random;
+use Zuffik\Srvant\Exceptions\ErrorException;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Formats\CSV;
 use Zuffik\Srvant\Formats\JSON;
 use Zuffik\Srvant\Formats\Regex;
 use Zuffik\Srvant\Formats\URL;
+use Zuffik\Srvant\Generators\Random\Distributions;
+use Zuffik\Srvant\Generators\Random\Distributions\Distribution;
+use Zuffik\Srvant\Generators\Random\Random;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\Structures\Lists\LinkedList;
 use Zuffik\Srvant\Structures\Maps\HashMap;
@@ -31,6 +35,7 @@ if(!function_exists('regex')) {
     /**
      * @param string|Regex $regex
      * @return Regex
+     * @throws InvalidArgumentException
      */
     function regex($regex)
     {
@@ -42,6 +47,8 @@ if(!function_exists('json')) {
     /**
      * @param array|Structure|string|JSON $json
      * @return JSON
+     * @throws ErrorException
+     * @throws InvalidArgumentException
      */
     function json($json)
     {
@@ -53,6 +60,7 @@ if(!function_exists('arrayList')) {
     /**
      * @param array|Structure $param
      * @return ArrayList
+     * @throws InvalidArgumentException
      */
     function arrayList($param = [])
     {
@@ -64,6 +72,7 @@ if(!function_exists('linkedList')) {
     /**
      * @param array|Structure $param
      * @return LinkedList
+     * @throws InvalidArgumentException
      */
     function linkedList($param = [])
     {
@@ -75,6 +84,7 @@ if(!function_exists('hashMap')) {
     /**
      * @param array|Structure $param
      * @return HashMap
+     * @throws InvalidArgumentException
      */
     function hashMap($param = [])
     {
@@ -85,7 +95,8 @@ if(!function_exists('hashMap')) {
 if(!function_exists('number')) {
     /**
      * @param int $value
-     * @return Number
+     * @return \Zuffik\Srvant\Types\Number
+     * @throws InvalidArgumentException
      */
     function number($value = 0)
     {
@@ -97,7 +108,8 @@ if(!function_exists('integer')) {
     /**
      * @param int $value
      * @param bool $strict default true. If you want not to type false everywhere use function number
-     * @return Integer
+     * @return Zuffik\Srvant\Types\Integer
+     * @throws InvalidArgumentException
      */
     function integer($value = 0, $strict = true)
     {
@@ -109,7 +121,8 @@ if(!function_exists('double')) {
     /**
      * @param float $value
      * @param bool $strict default true. If you want not to type false everywhere use function number
-     * @return Double
+     * @return Zuffik\Srvant\Types\Double
+     * @throws InvalidArgumentException
      */
     function double($value = 0.0, $strict = true)
     {
@@ -120,7 +133,7 @@ if(!function_exists('double')) {
 if(!function_exists('boolean')) {
     /**
      * @param boolean|Boolean $value
-     * @return Boolean
+     * @return Zuffik\Srvant\Types\Boolean
      */
     function boolean($value)
     {
@@ -129,13 +142,38 @@ if(!function_exists('boolean')) {
 }
 
 if(!function_exists('random')) {
-    function random()
+    /**
+     * @param string $distribution
+     * @param array $args
+     * @return Random|Distribution
+     */
+    function random($distribution = Random::class, ...$args)
     {
-        return new Random();
+        try {
+            $distribution = Distributions::verify($distribution);
+            $refClass = new ReflectionClass($distribution);
+            $constructor = $refClass->getConstructor();
+            $numArgs = count($args);
+            if(!empty($constructor)) {
+                $numRequiredArgs = $constructor->getNumberOfRequiredParameters();
+                $numAllArgs = $constructor->getNumberOfParameters();
+                if($numArgs < $numRequiredArgs && $numArgs > $numAllArgs) {
+                    throw new InvalidArgumentException("Invalid number of arguments $numArgs (must be between $numRequiredArgs and $numAllArgs)");
+                }
+            }
+            return $refClass->newInstanceArgs($args);
+        } catch (Exception $e) {
+            return new Random();
+        }
     }
 }
 
 if(!function_exists('url')) {
+    /**
+     * @param string $path
+     * @return URL
+     * @throws InvalidArgumentException
+     */
     function url($path = '')
     {
         return new Url($path);
@@ -143,6 +181,16 @@ if(!function_exists('url')) {
 }
 
 if(!function_exists('csv')) {
+    /**
+     * @param resource|ArrayList $data
+     * @param string $delimiter
+     * @param string $enclosure
+     * @param string $escape
+     * @param bool $hasHead
+     * @return CSV
+     * @throws InvalidArgumentException
+     * @throws ErrorException
+     */
     function csv($data, $delimiter = ';', $enclosure = '"', $escape = '\\', $hasHead = true)
     {
         return new CSV($data, $delimiter, $enclosure, $escape, $hasHead);

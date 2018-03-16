@@ -23,7 +23,6 @@
 | `toArray` |  |
 | `count` |  |
 | `merge` |  |
-| `filter` |  |
 | `clear` |  |
 | `sort` |  |
 | `get` |  |
@@ -36,6 +35,8 @@
 | `map` | Iterates over each item in List and pass it in closure (param: $item, $key, returns: mixed - value that will be replaced in list) |
 | `removeByValue` |  |
 | `getKeys` | Returns all keys used in map in ArrayList |
+| `allowOnly` | Keeps only elements with keys obtained in $keys |
+| `filter` |  |
 
 <a name="KeyValue"></a>
 ## KeyValue

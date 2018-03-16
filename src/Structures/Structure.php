@@ -11,7 +11,6 @@ namespace Zuffik\Srvant\Structures;
 
 use ArrayAccess;
 use Countable;
-use Exception;
 use JsonSerializable;
 
 /**
@@ -32,7 +31,6 @@ interface Structure extends Countable, ArrayAccess, JsonSerializable, IArray
      * Merges List with array or a structure
      * @param Structure|array $structure
      * @return Structure
-     * @throws Exception
      */
     public function merge($structure);
 
@@ -60,7 +58,6 @@ interface Structure extends Countable, ArrayAccess, JsonSerializable, IArray
      * Returns item from given key
      * @param mixed $key
      * @return mixed
-     * @throws Exception
      */
     public function get($key);
 

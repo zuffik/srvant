@@ -16,6 +16,6 @@ class Directory extends FileInfo
      */
     public function exists()
     {
-        return parent::exists() && is_dir((string) $this->path);
+        return parent::exists() && is_dir((string)$this->path);
     }
 }

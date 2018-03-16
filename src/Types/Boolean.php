@@ -36,14 +36,17 @@ class Boolean
 
     /**
      * @param bool|Boolean $value
-     * @return Boolean
+     * @return \Zuffik\Srvant\Types\Boolean
      */
     public function setValue($value)
     {
-        $this->value = !!((string) $value);
+        $this->value = !!((string)$value);
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->value ? '1' : '0';

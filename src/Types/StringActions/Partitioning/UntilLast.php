@@ -9,6 +9,7 @@
 namespace Zuffik\Srvant\Types\StringActions\Partitioning;
 
 
+use Zuffik\Srvant\Exceptions\ErrorException;
 use Zuffik\Srvant\Types\Str;
 
 /**
@@ -18,10 +19,13 @@ use Zuffik\Srvant\Types\Str;
 class UntilLast implements PartitionAction
 {
     /**
-     * @inheritdoc
+     * @param Str $str
+     * @param string $character
+     * @return Str
+     * @throws ErrorException
      */
     public function process(Str $str, $character = '')
     {
-        return $str->substring(0, intval(strrpos((string) $str, $character)));
+        return $str->substring(0, intval(strrpos((string)$str, $character)));
     }
 }

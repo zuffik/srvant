@@ -18,11 +18,13 @@ use Zuffik\Srvant\Types\Str;
 class FromLast implements PartitionAction
 {
     /**
-     * @inheritdoc
+     * @param Str $str
+     * @param string $character
+     * @return Str
      */
     public function process(Str $str, $character = '')
     {
-        $string = substr(strrchr((string) $str, $character), 1);
+        $string = substr(strrchr((string)$str, $character), 1);
         return $str->setValue($string === false ? '' : $string);
     }
 }

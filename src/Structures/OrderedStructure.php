@@ -9,10 +9,9 @@
 namespace Zuffik\Srvant\Structures;
 
 
-use Exception;
 use Generator;
-use InvalidArgumentException;
 use Iterator;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Helpers\Finder;
 use Zuffik\Srvant\Helpers\RecursiveGetter;
 use Zuffik\Srvant\Structures\Maps\HashMap;
@@ -116,7 +115,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      * @param callable|null $method a method to call on iterated value to compare with $search
      * @param bool $strict whether to use == or ===
      * @return mixed|null
-     * @throws Exception
+     * @throws \Zuffik\Srvant\Exceptions\InvalidArgumentException
      */
     public function find($search, $method = null, $strict = false)
     {
@@ -129,7 +128,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      * @param callable|null $method a method to call on iterated value to compare with $search
      * @param bool $strict whether to use == or ===
      * @return OrderedStructure a COPY of itself
-     * @throws Exception
+     * @throws \Zuffik\Srvant\Exceptions\InvalidArgumentException
      */
     public function findAll($search, $method = null, $strict = false)
     {
@@ -222,10 +221,10 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
             } else if (is_object($item) && !method_exists($item, '__toString') && !$item instanceof OrderedStructure) {
                 $level[$i] = get_class($item);
             } else {
-                $level[$i] = (string) $item;
+                $level[$i] = (string)$item;
             }
         }
-        return new Str(implode((string) $glue, $level));
+        return new Str(implode((string)$glue, $level));
     }
 
     /**
@@ -261,7 +260,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      * ```
      * @param callable|callable[]|string|string[] $criteria
      * @return HashMap
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function categorize($criteria)
     {
@@ -305,11 +304,12 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      * @param bool $stopAtFirst
      * @return OrderedStructure
      */
-    public function removeIf($value, $stopAtFirst = false) {
+    public function removeIf($value, $stopAtFirst = false)
+    {
         foreach ($this as $index => $item) {
-            if($value == $item) {
+            if ($value == $item) {
                 unset($this[$index]);
-                if($stopAtFirst) {
+                if ($stopAtFirst) {
                     break;
                 }
             }
@@ -355,7 +355,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      */
     public function sum()
     {
-        return $this->sumIf(function() {
+        return $this->sumIf(function () {
             return true;
         });
     }
@@ -368,7 +368,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
     {
         $min = PHP_INT_MAX;
         foreach ($this as $item) {
-            if($item < $min) {
+            if ($item < $min) {
                 $min = $item;
             }
         }
@@ -383,7 +383,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
     {
         $max = 0;
         foreach ($this as $item) {
-            if($item < $max) {
+            if ($item < $max) {
                 $max = $item;
             }
         }
@@ -428,7 +428,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      * @param string|string[] $method
      * @param bool $strict
      * @return int
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function indexOf($search, $method, $strict = false)
     {

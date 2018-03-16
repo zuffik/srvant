@@ -9,7 +9,7 @@
 namespace Zuffik\Srvant\Structures\Lists;
 
 
-use Exception;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Structures\OrderedStructure;
 use Zuffik\Srvant\Structures\Structure;
 
@@ -35,7 +35,7 @@ class LinkedList extends OrderedStructure
     /**
      * LinkedList constructor.
      * @param array|Structure $param
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function __construct($param = null)
     {
@@ -49,7 +49,7 @@ class LinkedList extends OrderedStructure
             $param = [];
         }
         if (!$param instanceof Structure && !is_array($param)) {
-            throw new Exception(
+            throw new InvalidArgumentException(
                 'Argument #1 of ' . get_class($this) . '::__construct must be an array or instance of Structure. ' .
                 (is_object($param) ? 'Instance of ' . get_class($param) : gettype($param)) . ' given'
             );
@@ -235,7 +235,7 @@ class LinkedList extends OrderedStructure
             }
             $curr = $curr->getNext();
         }
-        throw new Exception("Index out of bounds (size: {$this->count()}, requested: $key)");
+        throw new InvalidArgumentException("Index out of bounds (size: {$this->count()}, requested: $key)");
     }
 
     /**
@@ -253,7 +253,7 @@ class LinkedList extends OrderedStructure
                 }
             }
         }
-        throw new Exception("Index out of bounds (size: {$this->count()}, requested: $key)");
+        throw new InvalidArgumentException("Index out of bounds (size: {$this->count()}, requested: $key)");
     }
 
     /**
@@ -263,7 +263,6 @@ class LinkedList extends OrderedStructure
     {
         /** @var DataItem $item */
         $i = 0;
-        $before = $this->first;
         if ($key == 0) {
             $this->first = $this->first->getNext();
         } else if ($key == $this->count() - 1) {
@@ -294,7 +293,7 @@ class LinkedList extends OrderedStructure
                 return $this;
             }
         } while ($i != $this->count() - 1);
-        throw new Exception("Index out of bounds ($key requested; {$this->count()} limit)");
+        throw new InvalidArgumentException("Index out of bounds ($key requested; {$this->count()} limit)");
     }
 
     /**

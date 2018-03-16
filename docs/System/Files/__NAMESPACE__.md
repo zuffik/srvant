@@ -22,6 +22,7 @@
 | Method | Description |
 |---|---|
 | `exists` |  |
+| `getPath` |  |
 
 <a name="Directory"></a>
 ## Directory
@@ -53,12 +54,12 @@
 
 | Method | Description |
 |---|---|
-| `open` |  |
+| `open` | Opens file handle |
 | `getResource` |  |
 | `isOpen` |  |
-| `close` |  |
-| `setResource` |  |
-| `read` |  |
-| `write` |  |
-| `append` |  |
+| `close` | Closes file handle |
+| `setResource` | Replaces file handle if exists |
+| `read` | Reads from file (file may not be open) |
+| `write` | Writes to file (file may not be open) |
+| `append` | Appends to file (may not be open) |
 

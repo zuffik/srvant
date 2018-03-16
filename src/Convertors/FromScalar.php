@@ -19,7 +19,7 @@ class FromScalar
     public static function formatInput($input)
     {
         $unserialized = @unserialize($input);
-        if($unserialized !== false) {
+        if ($unserialized !== false) {
             $input = $unserialized;
         }
         return $input;

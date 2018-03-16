@@ -8,6 +8,8 @@
 
 namespace Zuffik\Srvant\Generators\Random\Distributions;
 
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
+
 /**
  * Class CombinedDistribution is used for combining multiple distributions.
  * Generated numbers can be added, subtracted, multiplied and divided. All of these actions is
@@ -57,7 +59,7 @@ class CombinedDistribution extends Distribution
             '/' => 'divide',
         ]);
         if(!$operations->keyExists((string) $operation)) {
-            throw new \Exception("Unknown CombinedDistribution operation '$operation'");
+            throw new InvalidArgumentException("Unknown CombinedDistribution operation '$operation'");
         }
         return call_user_func([$this, $operations[(string) $operation]], $n1, $n2);
     }

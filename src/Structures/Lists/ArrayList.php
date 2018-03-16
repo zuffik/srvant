@@ -9,7 +9,7 @@
 namespace Zuffik\Srvant\Structures\Lists;
 
 
-use Exception;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\OrderedStructure;
 use Zuffik\Srvant\Structures\Structure;
@@ -38,7 +38,7 @@ class ArrayList extends OrderedStructure
             $param = [];
         }
         if (!$param instanceof IArray && !is_array($param)) {
-            throw new Exception(
+            throw new InvalidArgumentException(
                 'Argument #1 of ' . get_class($this) . '::__construct must be an array or instance of IArray. ' .
                 (is_object($param) ? 'Instance of ' . get_class($param) : gettype($param)) . ' given'
             );
@@ -126,7 +126,7 @@ class ArrayList extends OrderedStructure
             $structure = $structure->toArray();
         }
         if (!is_array($structure)) {
-            throw new Exception(
+            throw new InvalidArgumentException(
                 'Argument #1 of ' . get_class($this) . '::mergeWith must be an array or instance of IArray. ' .
                 (is_object($structure) ? 'Instance of ' . get_class($structure) : gettype($structure)) . ' given'
             );
@@ -159,7 +159,7 @@ class ArrayList extends OrderedStructure
     {
         $count = $this->count();
         if ($key > $count) {
-            throw new Exception("Index out of bounds (requested: $key, limit: $count)");
+            throw new InvalidArgumentException("Index out of bounds (requested: $key, limit: $count)");
         }
         return $this->array[$key];
     }

@@ -9,9 +9,10 @@
 namespace Zuffik\Srvant\Structures\Maps;
 
 
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
+use Zuffik\Srvant\Structures\AbstractStructure;
 use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
-use Zuffik\Srvant\Structures\AbstractStructure;
 use Zuffik\Srvant\Structures\OrderedStructure;
 use Zuffik\Srvant\Structures\Structure;
 
@@ -32,11 +33,11 @@ class HashMap extends AbstractStructure implements Map
     public function __construct($param = null)
     {
         parent::__construct($param);
-        if(empty($param)) {
+        if (empty($param)) {
             $param = [];
         }
         if (!$param instanceof IArray && !is_array($param)) {
-            throw new \Exception('Argument passed to HashMap must be type of array or instance of IArray. ' . gettype($param) . ' given.');
+            throw new InvalidArgumentException('Argument passed to HashMap must be type of array or instance of IArray. ' . gettype($param) . ' given.');
         }
         $this->array = $param instanceof IArray ? $param->toArray() : $param;
         $this->iterator = new ArrayList();
@@ -67,19 +68,6 @@ class HashMap extends AbstractStructure implements Map
     public function merge($structure)
     {
         $this->array = array_merge($this->array, $structure instanceof Structure ? $structure->toArray() : $structure);
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function filter($callable)
-    {
-        foreach ($this->array as $key => $value) {
-            if(!call_user_func($callable, $value, $key)) {
-                unset($this->array[$key]);
-            }
-        }
         return $this;
     }
 
@@ -130,7 +118,7 @@ class HashMap extends AbstractStructure implements Map
     {
         unset($this->array[$key]);
         foreach ($this->iterator as $i => $item) {
-            if($key == $item->getKey()) {
+            if ($key == $item->getKey()) {
                 $this->iterator->remove($i);
             }
         }
@@ -192,9 +180,9 @@ class HashMap extends AbstractStructure implements Map
     public function removeByValue($value, $firstOnly = true)
     {
         foreach ($this->array as $i => $item) {
-            if($item == $value) {
+            if ($item == $value) {
                 unset($this->array[$i]);
-                if($firstOnly) {
+                if ($firstOnly) {
                     break;
                 }
             }
@@ -205,7 +193,7 @@ class HashMap extends AbstractStructure implements Map
     /**
      * Returns all keys used in map in ArrayList
      * @return ArrayList
-     * @throws \Exception
+     * @throws InvalidArgumentException
      */
     public function getKeys()
     {
@@ -216,14 +204,27 @@ class HashMap extends AbstractStructure implements Map
      * Keeps only elements with keys obtained in $keys
      * @param array|OrderedStructure $keys
      * @return HashMap
-     * @throws \Exception
+     * @throws InvalidArgumentException
      */
     public function allowOnly($keys)
     {
         $keys = new ArrayList($keys);
-        $this->filter(function($item, $key) use($keys) {
+        $this->filter(function ($_, $key) use ($keys) {
             return $keys->contains($key);
         });
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function filter($callable)
+    {
+        foreach ($this->array as $key => $value) {
+            if (!call_user_func($callable, $value, $key)) {
+                unset($this->array[$key]);
+            }
+        }
         return $this;
     }
 }

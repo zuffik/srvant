@@ -14,7 +14,7 @@ use Zuffik\Srvant\Types\Str;
 /**
  * Class Path
  * @package Zuffik\Srvant\System
- * SYSTEM DEPENDENT (unix)
+ * SYSTEM DEPENDENT yet (unix)
  */
 class Path
 {
@@ -40,6 +40,10 @@ class Path
         return $this->path;
     }
 
+    /**
+     * @param string $path
+     * @return mixed|string
+     */
     protected function makeAbsolute($path)
     {
         $isRelativePath = strlen($path) == 0 || $path[0] != '/';
@@ -68,10 +72,10 @@ class Path
     }
 
     /**
-     * @inheritDoc
+     * @return string
      */
     public function __toString()
     {
-        return (string) $this->path;
+        return (string)$this->path;
     }
 }

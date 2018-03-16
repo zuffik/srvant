@@ -8,8 +8,8 @@
 
 namespace Zuffik\Test\Srvant\Files;
 
-use Zuffik\Srvant\System\Path;
 use PHPUnit\Framework\TestCase;
+use Zuffik\Srvant\System\Path;
 
 class PathTest extends TestCase
 {

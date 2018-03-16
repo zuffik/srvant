@@ -10,6 +10,8 @@ namespace Zuffik\Srvant\Formats;
 
 
 use Zuffik\Srvant\Convertors\ArrayStructureConverter;
+use Zuffik\Srvant\Exceptions\ErrorException;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Structures\IArray;
 use Zuffik\Srvant\Structures\Lists\ArrayList;
 use Zuffik\Srvant\System\Files\File;
@@ -61,29 +63,30 @@ class CSV implements \Iterator, IArray
      * @param string $enclosure
      * @param string $escape
      * @param bool $hasHead
-     * @throws \Exception
+     * @throws ErrorException
+     * @throws InvalidArgumentException
      */
     public function __construct($data, $delimiter = ';', $enclosure = '"', $escape = '\\', $hasHead = true)
     {
-        if($data instanceof File) {
+        if ($data instanceof File) {
             $data->open(Stream::READ);
             $data = $data->getResource();
-        } else if($data instanceof Path) {
+        } else if ($data instanceof Path) {
             $data = file_get_contents((string)$data);
         }
-        if(is_array($data)) {
+        if (is_array($data)) {
             $data = ArrayStructureConverter::toStructure($data);
-            if(!empty($data->toArray()) > 0 && !$data[0] instanceof ArrayList) {
+            if (!empty($data->toArray()) > 0 && !$data[0] instanceof ArrayList) {
                 $data = \arrayList([$data]);
             }
-        } else if(is_object($data) && $data instanceof CSV) {
+        } else if (is_object($data) && $data instanceof CSV) {
             $data = $data->data;
-        } else if(is_string($data) || (is_object($data) && method_exists($data, '__toString'))) {
-            $data = string($data)->split(PHP_EOL)->map(function($item) use($delimiter, $enclosure, $escape) {
-                return str_getcsv((string) $item, $delimiter, $enclosure, $escape);
+        } else if (is_string($data) || (is_object($data) && method_exists($data, '__toString'))) {
+            $data = string($data)->split(PHP_EOL)->map(function ($item) use ($delimiter, $enclosure, $escape) {
+                return str_getcsv((string)$item, $delimiter, $enclosure, $escape);
             });
-        } else if(!is_resource($data)) {
-            throw new \Exception('Unknown CSV format.');
+        } else if (!is_resource($data)) {
+            throw new InvalidArgumentException('Unknown CSV format.');
         }
         $this->data = $data;
         $this->delimiter = $delimiter;
@@ -97,10 +100,11 @@ class CSV implements \Iterator, IArray
      * @link http://php.net/manual/en/iterator.current.php
      * @return mixed Can return any type.
      * @since 5.0.0
+     * @throws InvalidArgumentException
      */
     public function current()
     {
-        if($this->data instanceof ArrayList) {
+        if ($this->data instanceof ArrayList) {
             return $this->data->current();
         } else {
             return \arrayList($this->current);
@@ -115,7 +119,7 @@ class CSV implements \Iterator, IArray
      */
     public function next()
     {
-        if($this->data instanceof ArrayList) {
+        if ($this->data instanceof ArrayList) {
             $this->data->next();
         } else {
             $this->line++;
@@ -130,7 +134,7 @@ class CSV implements \Iterator, IArray
      */
     public function key()
     {
-        if($this->data instanceof ArrayList) {
+        if ($this->data instanceof ArrayList) {
             return $this->data->key();
         } else {
             return $this->line;
@@ -146,7 +150,7 @@ class CSV implements \Iterator, IArray
      */
     public function valid()
     {
-        if($this->data instanceof ArrayList) {
+        if ($this->data instanceof ArrayList) {
             return $this->data->valid();
         } else {
             $this->current = fgetcsv($this->data, 0, $this->delimiter, $this->enclosure, $this->escape);
@@ -162,7 +166,7 @@ class CSV implements \Iterator, IArray
      */
     public function rewind()
     {
-        if($this->data instanceof ArrayList) {
+        if ($this->data instanceof ArrayList) {
             $this->data->rewind();
         } else {
             rewind($this->data);

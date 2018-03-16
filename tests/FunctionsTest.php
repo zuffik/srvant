@@ -9,6 +9,7 @@
 namespace Zuffik\Test\Srvant;
 
 use PHPUnit\Framework\TestCase;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Formats\JSON;
 use Zuffik\Srvant\Formats\Regex;
 use Zuffik\Srvant\Generators\Random\Random;
@@ -39,13 +40,13 @@ class FunctionsTest extends TestCase
 
     public function testNotValidRegex()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         regex('this is not valid regex');
     }
 
     public function testNotValidJson()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         json('this is not valid json');
     }
 }

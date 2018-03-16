@@ -9,7 +9,7 @@
 namespace Zuffik\Srvant\Formats;
 
 
-use InvalidArgumentException;
+use Zuffik\Srvant\Exceptions\InvalidArgumentException;
 use Zuffik\Srvant\Types\Str;
 
 class Regex
@@ -24,7 +24,7 @@ class Regex
      */
     public function __construct($regex)
     {
-        if(@preg_match((string) $regex, '') === false) {
+        if (@preg_match((string)$regex, '') === false) {
             throw new InvalidArgumentException('Regex "' . $regex . '" is not valid');
         }
         $this->regex = new Str($regex);
@@ -47,10 +47,10 @@ class Regex
      */
     public function match($subject, $global = false)
     {
-        if($global) {
-            preg_match_all((string) $this->regex, (string) $subject, $matches);
+        if ($global) {
+            preg_match_all((string)$this->regex, (string)$subject, $matches);
         } else {
-            preg_match((string) $this->regex, (string) $subject, $matches);
+            preg_match((string)$this->regex, (string)$subject, $matches);
         }
         return $matches;
     }
@@ -63,10 +63,10 @@ class Regex
      */
     public function replace($subject, $replace)
     {
-        if(is_callable($replace)) {
-            return preg_replace_callback((string) $this->regex, $replace, (string) $subject);
+        if (is_callable($replace)) {
+            return preg_replace_callback((string)$this->regex, $replace, (string)$subject);
         } else {
-            return preg_replace((string) $this->regex, (string) $subject, (string) $replace);
+            return preg_replace((string)$this->regex, (string)$subject, (string)$replace);
         }
     }
 
@@ -76,6 +76,6 @@ class Regex
      */
     public function __toString()
     {
-        return (string) $this->getRegex();
+        return (string)$this->getRegex();
     }
 }

@@ -20,7 +20,7 @@ class Finder
      * @param bool $stopOnFirst
      * @param bool $index
      * @return mixed
-     * @throws \Exception
+     * @throws \Zuffik\Srvant\Exceptions\InvalidArgumentException
      */
     public static function find($iterable, $search, $method = null, $strict = false, $stopOnFirst = true, $index = false) {
         $result = $stopOnFirst ? null : [];
