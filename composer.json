@@ -19,5 +19,7 @@
     "require-dev": {
         "alphayax/phpdoc_md": "^1.2",
         "phpunit/phpunit": "^6"
+    },
+    "require": {
     }
 }

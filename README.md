@@ -89,6 +89,11 @@ echo $url->getRequestedUrl(); // index.php
 
 There are planned many features in future.
 
+## Sources
+
+As for mime types, [this](https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types) magic
+database is used
+
 ## Contribution
 
 Contribution is simple. Make pull request with your new or edited code. It **MUST** follow PSR coding standards. For new feature provide also unit tests.

@@ -39,6 +39,10 @@ class FileInfoTest extends TestCase
         $o->close();
         $this->assertFalse($o->isOpen());
         $o->write('This is original file');
+
+        $this->assertEquals(string('text/plain'), (new File('data/example.csv'))->mime());
+        $this->assertEquals(string('text/plain'), (new File('data/original.txt'))->mime());
+        $this->assertEquals(string('image/png'), (new File('data/img.png'))->mime());
     }
 
     public function testDirectory()

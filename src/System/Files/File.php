@@ -120,4 +120,20 @@ class File extends FileInfo
             throw new ErrorException("Failed to append to {$this->path} file." . error_get_last()['message']);
         }
     }
+
+    /**
+     * @return Str mime content type, if none found, returns 'application/octet-stream'
+     */
+    public function mime()
+    {
+        $result = string('application/octet-stream');
+        if(function_exists('finfo_open')) {
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $result->setValue(finfo_file($finfo, (string)$this->path->getPath()));
+            finfo_close($finfo);
+        } else if(function_exists('mime_content_type')) {
+            $result->setValue(mime_content_type((string)$this->path->getPath()));
+        }
+        return $result;
+    }
 }

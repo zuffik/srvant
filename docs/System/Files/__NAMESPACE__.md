@@ -62,4 +62,5 @@
 | `read` | Reads from file (file may not be open) |
 | `write` | Writes to file (file may not be open) |
 | `append` | Appends to file (may not be open) |
+| `mime` |  |
 
