@@ -395,7 +395,7 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      */
     public function contains($value)
     {
-        return !empty($this->find($value));
+        return !is_null($this->find($value));
     }
 
     /**
