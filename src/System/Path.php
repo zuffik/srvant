@@ -29,7 +29,7 @@ class Path
      */
     public function __construct($path = '')
     {
-        $this->path = string($path instanceof Path ? $path->path : $this->makeAbsolute($path));
+        $this->path = string($path instanceof Path ? $path->path : $this->makeAbsolute((string)$path));
     }
 
     /**

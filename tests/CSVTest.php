@@ -9,6 +9,7 @@
 namespace Zuffik\Test\Srvant;
 
 use PHPUnit\Framework\TestCase;
+use Zuffik\Srvant\Exceptions\ErrorException;
 use Zuffik\Srvant\System\Files\File;
 use Zuffik\Srvant\System\Path;
 
@@ -18,6 +19,25 @@ class CSVTest extends TestCase
     {
         $handle = fopen(__DIR__ . '/../data/example.csv', 'r');
         $this->useHandle($handle);
+        fclose($handle);
+    }
+
+    public function testArrayAccess()
+    {
+        $handle = fopen(__DIR__ . '/../data/example.csv', 'r');
+        $csv = csv($handle, ';', '"', '\\', false);
+        $this->assertEquals(arrayList(['foo', 'bar', 5, 6.7]), $csv[0]);
+        $this->expectException(ErrorException::class);
+        $csv[0] = arrayList();
+        fclose($handle);
+    }
+
+    public function testUnsetException()
+    {
+        $handle = fopen(__DIR__ . '/../data/example.csv', 'r');
+        $csv = csv($handle, ';', '"', '\\', false);
+        $this->expectException(ErrorException::class);
+        unset($csv[0]);
         fclose($handle);
     }
 
