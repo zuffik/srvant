@@ -227,4 +227,14 @@ class HashMap extends AbstractStructure implements Map
         }
         return $this;
     }
+
+    /**
+     * Returns all values used in map in ArrayList
+     * @return ArrayList
+     * @throws InvalidArgumentException
+     */
+    public function getValues()
+    {
+        return new ArrayList(array_values($this->array));
+    }
 }

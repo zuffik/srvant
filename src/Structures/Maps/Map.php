@@ -18,4 +18,9 @@ interface Map
      * @return ArrayList
      */
     public function getKeys();
+    /**
+     * Returns all values used in map in ArrayList
+     * @return ArrayList
+     */
+    public function getValues();
 }
