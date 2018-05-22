@@ -37,6 +37,7 @@
 | `getKeys` | Returns all keys used in map in ArrayList |
 | `allowOnly` | Keeps only elements with keys obtained in $keys |
 | `filter` |  |
+| `getValues` | Returns all values used in map in ArrayList |
 
 <a name="KeyValue"></a>
 ## KeyValue
@@ -61,4 +62,5 @@
 | Method | Description |
 |---|---|
 | `getKeys` | Returns all keys used in map in ArrayList |
+| `getValues` | Returns all values used in map in ArrayList |
 

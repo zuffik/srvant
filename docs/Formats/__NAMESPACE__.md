@@ -23,6 +23,7 @@
 | Method | Description |
 |---|---|
 | `format` | Formats a exception to readable format. |
+| `asString` |  |
 
 <a name="Regex"></a>
 ## Regex
@@ -79,6 +80,10 @@
 | `valid` | Checks if current position is valid |
 | `rewind` | Rewind the Iterator to the first element |
 | `toArray` | Every object can be converted to array due to high native PHP compatibility. |
+| `offsetExists` | Whether a offset exists |
+| `offsetGet` | Offset to retrieve |
+| `offsetSet` | Offset to set |
+| `offsetUnset` | Offset to unset |
 
 <a name="JSON"></a>
 ## JSON

@@ -39,4 +39,10 @@ class ExceptionFormatter
             return $result;
         });
     }
+
+    public static function asString(Exception $exception)
+    {
+        $class = get_class($exception);
+        return "$class: {$exception->getMessage()} \n{$exception->getTraceAsString()}";
+    }
 }
