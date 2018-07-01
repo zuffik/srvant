@@ -430,8 +430,8 @@ abstract class OrderedStructure extends AbstractStructure implements Iterator
      * @return int
      * @throws InvalidArgumentException
      */
-    public function indexOf($search, $method, $strict = false)
+    public function indexOf($search, $method = null, $strict = false)
     {
-        return Finder::find($this, $search, $method, $strict, true, true);
+        return Finder::find($this, $search, $method = null, $strict, true, true);
     }
 }
