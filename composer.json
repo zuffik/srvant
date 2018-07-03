@@ -10,7 +10,7 @@
         }
     ],
     "autoload": {
-        "files": ["helpers/functions.php"],
+        "files": ["helpers/functions.php", "helpers/functions_namespace.php"],
         "psr-4": {
             "Zuffik\\Srvant\\": "src/",
             "Zuffik\\Test\\Srvant\\": "tests/"

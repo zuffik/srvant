@@ -104,4 +104,11 @@ abstract class AbstractStructure implements Structure
     {
         return $this->toArray();
     }
+
+    public function filterEmpty()
+    {
+        return $this->filter(function($item) {
+            return !empty($item);
+        });
+    }
 }

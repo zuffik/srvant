@@ -42,6 +42,12 @@ interface Structure extends Countable, ArrayAccess, JsonSerializable, IArray
     public function filter($callable);
 
     /**
+     * Filters empty items
+     * @return Structure
+     */
+    public function filterEmpty();
+
+    /**
      * Removes all items from List.
      * @return static
      */
